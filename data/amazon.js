@@ -8,6 +8,8 @@ function buildSelect(){
     word += '</select>' ;
 }
 
+ll
+
 function f1(element){
     let word = '<div class = "product-container">'
     word += '<div class="product-image-container"><img class="product-image" src = ${element.image} ></div>' ;
