@@ -8,7 +8,6 @@ function buildSelect(){
     word += '</select>' ;
 }
 
-ll
 
 function f1(element){
     let word = '<div class = "product-container">'
@@ -37,3 +36,9 @@ function f2(array){
     return result ;
 
 }
+
+function f3(){
+    document.querySelector('.products-grid').innerHTML = f2(products);
+}
+
+f3() ;
