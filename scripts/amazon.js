@@ -5,6 +5,8 @@ function buildSelect(){
     }
 
     word += `</select>` ;
+
+    return word ;
 }
 
 
