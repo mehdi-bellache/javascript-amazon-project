@@ -1,44 +1,49 @@
-function buildSelect(){
-    let word = `<select> <option selected value="1">1</option>` ; 
+function buildQuantitySelect(){
+    let html = `<select> <option selected value="1">1</option>` ; 
     for(let i = 2; i<=10; i++){
-        word += `<option value="${i}">${i}</option> ` ;
+        html += `<option value="${i}">${i}</option> ` ;
     }
 
-    word += `</select>` ;
+    html += `</select>` ;
 
-    return word ;
+    return html ;
 }
 
 
-function f1(element){
-    let word = `<div class = "product-container">` ;
-    word += `<div class="product-image-container"><img class="product-image" src = ${element.image} ></div>` ;
-    word += `<div class="product-name limit-text-to-2-lines">${element.name}</div> ` ; 
-    word += `<div class="product-rating-container"> <img class="product-rating-stars" src = "images/ratings/rating-${element.rating.stars * 10}.png"> <div class= "product-rating-count link-primary">${element.rating.count} </div></div>` ;
-    word += `<div class= "product-price"> $${element.priceCents / 100} </div> `;
-    word += `<div class = "product-quantity-container"> ${buildSelect()}</div>` ;
-    word += `<div class= "product-spacer"> </div>`;
-    word += `<div class= "added-to-cart"> <img src="images/icons/checkmark.png">Added</div>`;
-    word += `<button class= "add-to-cart-button button-primary">Add to Cart</button>` ;
-    word += `</div>` ;
+function buildProductHTML(product){
+    let html = `<div class = "product-container">` ;
+    html += `<div class="product-image-container"><img class="product-image" src = ${product.image} ></div>` ;
+    html += `<div class="product-name limit-text-to-2-lines">${product.name}</div> ` ; 
+    html += `<div class="product-rating-container"> <img class="product-rating-stars" src = "images/ratings/rating-${product.rating.stars * 10}.png"> <div class= "product-rating-count link-primary">${product.rating.count} </div></div>` ;
+    html += `<div class= "product-price"> $${(product.priceCents / 100).toFixed(2)} </div> `;
+    html += `<div class = "product-quantity-container"> ${buildQuantitySelect()}</div>` ;
+    html += `<div class= "product-spacer"> </div>`;
+    html += `<div class= "added-to-cart"> <img src="images/icons/checkmark.png">Added</div>`;
+    html += `<button class= "add-to-cart-button button-primary js-add-to-cart">Add to Cart</button>` ;
+    html += `</div>` ;
     
-    return word ;
+    return html ;
 }
 
 
 
-function f2(array){
-    let result = `` ;
-    array.forEach(element => {
-        result += f1(element) ;
+function buildAllProductsHTML(products){
+    let allProductsHTML = `` ;
+    products.forEach(product => {
+        allProductsHTML += buildProductHTML(product) ;
     });
 
-    return result ;
+    return allProductsHTML ;
 
 }
 
-function f3(){
-    document.querySelector('.products-grid').innerHTML = f2(products);
+function renderProducts(){
+    document.querySelector('.products-grid').innerHTML = buildAllProductsHTML(products);
 }
 
-f3() ;
+renderProducts() ;
+
+document.querySelectorAll('.js-add-to-cart').forEach((button) => { button.addEventListener('click', function(){
+
+    document.querySelector('.cart-quantity').innerHTML = Number(document.querySelector('.cart-quantity').textContent) + 1 ; 
+})})
