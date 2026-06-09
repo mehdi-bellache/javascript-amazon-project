@@ -1,11 +1,11 @@
 function buildSelect(){
     let word ; 
-    word = '<select> <option selected value="1">1</option>' ; 
+    word = `<select> <option selected value="1">1</option>` ; 
     for(let i = 2; i<=10; i++){
-        word += '<option value="${i}">${i}</option> ' ;
+        word += `<option value="${i}">${i}</option> ` ;
     }
 
-    word += '</select>' ;
+    word += `</select>` ;
 }
 
 
@@ -28,7 +28,7 @@ function f1(element){
 
 
 function f2(array){
-    let result ;
+    let result = '' ;
     array.forEach(element => {
         result += f1(element) ;
     });
