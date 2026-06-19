@@ -46,12 +46,16 @@ renderProducts() ;
 document.querySelectorAll('.js-add-to-cart').forEach((button) => { 
     button.addEventListener('click', function(){ 
        const productName = button.dataset.productName ;
-       cart.push(
-        {
+       const matchingItem = cart.find(element => element.productName === productName);
+       if(matchingItem){
+        matchingItem.quantity ++ ;
+       }
+       else{
+        cart.push({        
             productName: productName,
             quantity: 1
-        }
-       )
+        })
+    }
      })
     // we are not sure if the quantity to be added is only one or not.
     
