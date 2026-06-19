@@ -19,7 +19,7 @@ function buildProductHTML(product){
     html += `<div class = "product-quantity-container"> ${buildQuantitySelect()}</div>` ;
     html += `<div class= "product-spacer"> </div>`;
     html += `<div class= "added-to-cart"> <img src="images/icons/checkmark.png">Added</div>`;
-    html += `<button class= "add-to-cart-button button-primary js-add-to-cart" data-product-name="${product.name}">Add to Cart</button>` ;
+    html += `<button class= "add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">Add to Cart</button>` ;
     html += `</div>` ;
     
     return html ;
@@ -45,19 +45,19 @@ renderProducts() ;
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => { 
     button.addEventListener('click', function(){ 
-       const productName = button.dataset.productName ;
-       const matchingItem = cart.find(element => element.productName === productName);
+       const productId = button.dataset.productId ;
+       const matchingItem = cart.find(element => element.productId === productId);
        if(matchingItem){
         matchingItem.quantity ++ ;
        }
        else{
         cart.push({        
-            productName: productName,
+            productId: productId,
             quantity: 1
         })
     }
+    console.log(cart);
      })
-    // we are not sure if the quantity to be added is only one or not.
     
 
     // document.querySelector('.cart-quantity').innerHTML = Number(document.querySelector('.cart-quantity').textContent) + 1 ;
