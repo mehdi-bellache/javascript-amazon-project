@@ -47,20 +47,6 @@ function renderProducts(){
 renderProducts() ;
 
 
-function addToCart(productId){
-    const matchingItem = cart.find(element => element.productId === productId);
-    if(matchingItem){
-        matchingItem.quantity ++ ;
-    }
-    else{
-        cart.push({        
-            productId: productId,
-            quantity: 1
-        })
-    }
-
-}
-
 function countCartQuantity(){
     let cartQuantity = 0 ;
 
