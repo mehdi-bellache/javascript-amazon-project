@@ -1,4 +1,5 @@
-import cart from '../data/cart.js' ;
+import {cart} from '../data/cart.js' ;
+import {products} from '../data/products.js';
 
 function buildQuantitySelect(){
     let html = `<select> <option selected value="1">1</option>` ; 
