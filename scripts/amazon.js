@@ -56,7 +56,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
             quantity: 1
         })
     }
-    console.log(cart);
+    
 
     let cartQuantity = 0 ;
 
@@ -65,8 +65,15 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         
     })
 
-    document.querySelector('.cart-quantity').innerHTML = cartQuantity ;
-     })   
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity ;
+    
+    console.log(cartQuantity); 
+    console.log(cart);
+     })
+     
+    
+
+     
 
     // document.querySelector('.cart-quantity').innerHTML = Number(document.querySelector('.cart-quantity').textContent) + 1 ;
 })
