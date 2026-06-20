@@ -35,3 +35,9 @@ function buildAllProductsHTML(cart, products){
     return allProductsHTML ;
 
 }
+
+function renderProducts(){
+    document.querySelector('.order-summary').innerHTML = buildAllProductsHTML(cart, products);
+}
+
+renderProducts();
