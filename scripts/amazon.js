@@ -1,5 +1,7 @@
 import {cart, addToCart} from '../data/cart.js' ;
 import {products} from '../data/products.js';
+import {formatCurrency} from './utils/money.js'; 
+
 
 function buildQuantitySelect(){
     let html = `<select> <option selected value="1">1</option>` ; 
@@ -18,7 +20,7 @@ function buildProductHTML(product){
     html += `<div class="product-image-container"><img class="product-image" src = ${product.image} ></div>` ;
     html += `<div class="product-name limit-text-to-2-lines">${product.name}</div> ` ; 
     html += `<div class="product-rating-container"> <img class="product-rating-stars" src = "images/ratings/rating-${product.rating.stars * 10}.png"> <div class= "product-rating-count link-primary">${product.rating.count} </div></div>` ;
-    html += `<div class= "product-price"> $${(product.priceCents / 100).toFixed(2)} </div> `;
+    html += `<div class= "product-price"> $${formatCurrency(product.priceCents)} </div> `;
     html += `<div class = "product-quantity-container"> ${buildQuantitySelect()}</div>` ;
     html += `<div class= "product-spacer"> </div>`;
     html += `<div class= "added-to-cart"> <img src="images/icons/checkmark.png">Added</div>`;
