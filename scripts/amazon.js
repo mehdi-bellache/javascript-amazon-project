@@ -1,3 +1,5 @@
+import cart from '../data/cart.js' ;
+
 function buildQuantitySelect(){
     let html = `<select> <option selected value="1">1</option>` ; 
     for(let i = 2; i<=10; i++){
