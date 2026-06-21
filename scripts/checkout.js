@@ -3,6 +3,16 @@ import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js'; 
 
 
+function deleteProductFromCart(cart, product){
+    cart.map(cartElement =>{ 
+        if( cartElement.productId === product.productId){
+            return false ;
+        }
+        else{
+            return true ;
+        }
+    })
+}
 
 function buildProductHTML(cartProduct, product){
 
@@ -18,28 +28,13 @@ function buildProductHTML(cartProduct, product){
     html += `<div class="delivery-option-price"> $4.99 - Shipping </div> </div> </div> <div class="delivery-option"> <input type="radio" class="delivery-option-input" name="delivery-option-${product.id}">` ;
     html += `<div> <div class="delivery-option-date"> Monday, June 13 </div> <div class="delivery-option-price"> $9.99 - Shipping </div>` ;
     html += `</div> </div> </div> </div> </div>`;
+
+    document.querySelector('js-delete-link').addEventListener('click', () =>{
+        deleteProductFromCart(cart, cartProduct);
+    })
     
     return html ;
 }
-
-function deleteProductFromCart(cart, product){
-    cart.map(cartElement =>{ 
-        if( cartElement.productId === product.productId){
-            return false ;
-        }
-        else{
-            return true ;
-        }
-    })
-}
-
-document.querySelector('js-delete-link').addEventListener('click', () =>{
-    
-
-})
-// after clicking on delete button i should.
-// delete the product from the cart
-
 
 function buildAllProductsHTML(cart, products){
     let allProductsHTML = `` ;
