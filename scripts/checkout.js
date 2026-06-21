@@ -43,17 +43,6 @@ function renderProducts(){
 renderProducts();
 
 
-function deleteProductFromCart(cart, productId){
-    const newCart = cart.filter(cartElement =>{ 
-        if( cartElement.productId === productId){
-            return false ;
-        }
-        return true ;
-    
-    })
-    cart = newCart ;
-}
-
 document.querySelectorAll('.js-delete-link').forEach(deleteButton => {deleteButton.addEventListener('click', () =>{
         deleteProductFromCart(cart, deleteButton.dataset.productId);
         renderProducts();

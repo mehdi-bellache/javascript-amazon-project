@@ -21,3 +21,15 @@ export function addToCart(productId){
     }
 
 }
+
+
+function deleteProductFromCart(cart, productId){
+    const newCart = cart.filter(cartElement =>{ 
+        if( cartElement.productId === productId){
+            return false ;
+        }
+        return true ;
+    
+    })
+    cart = newCart ;
+}
