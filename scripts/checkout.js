@@ -6,7 +6,7 @@ import {formatCurrency} from './utils/money.js';
 
 function buildProductHTML(cartProduct, product){
 
-    let html = `<div class = "cart-item-container">` ;
+    let html = `<div class = "cart-item-container js-cart-item-container-${product.id}">` ;
     html += `<div class="delivery-date">Delivery date: Tuesday, June 21</div>` ;
     html += `<div class="cart-item-details-grid"><img class="product-image" src=${product.image}>` ; 
     html += `<div class="cart-item-details"> <div class="product-name">${product.name}</div> <div class="product-price">$${formatCurrency(product.priceCents)} </div>` ;
@@ -44,8 +44,8 @@ renderProducts();
 
 
 document.querySelectorAll('.js-delete-link').forEach(deleteButton => {deleteButton.addEventListener('click', () =>{
-        deleteProductFromCart(deleteButton.dataset.productId);
-        // renderProducts();
-        console.log(cart);
+    const productId = deleteButton.dataset.productId ;
+        deleteProductFromCart(productId);
+        document.querySelector(`.js-cart-item-container-${productId}`).remove();
     })
 });
