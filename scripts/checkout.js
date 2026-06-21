@@ -1,4 +1,4 @@
-import {cart} from '../data/cart.js' ;
+import {cart, deleteProductFromCart} from '../data/cart.js' ;
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js'; 
 
@@ -44,7 +44,8 @@ renderProducts();
 
 
 document.querySelectorAll('.js-delete-link').forEach(deleteButton => {deleteButton.addEventListener('click', () =>{
-        deleteProductFromCart(cart, deleteButton.dataset.productId);
-        renderProducts();
+        deleteProductFromCart(deleteButton.dataset.productId);
+        // renderProducts();
+        console.log(cart);
     })
 });
