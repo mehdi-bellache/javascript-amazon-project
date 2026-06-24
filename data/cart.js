@@ -17,6 +17,8 @@ export function addToCart(productId){
         })
     }
 
+    saveToStorage();
+
 }
 
 
@@ -29,4 +31,6 @@ export function deleteProductFromCart(productId){
     
     })
     cart = newCart ;
+
+    saveToStorage();
 }
