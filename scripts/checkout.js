@@ -1,6 +1,7 @@
 import {cart, deleteProductFromCart} from '../data/cart.js' ;
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js'; 
+import {} from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js' ;
 
 
 function buildProductHTML(cartProduct, product){
