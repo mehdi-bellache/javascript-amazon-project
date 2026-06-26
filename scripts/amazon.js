@@ -77,16 +77,32 @@ function countCartQuantity(){
 
 }
 
+const addedMessageTimeouts = {};
+
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
-
-    button.addEventListener('click', function(){
-
-        const {productId} = button.dataset ;
-        addToCart(productId);
-        document.querySelector('.js-cart-quantity').innerHTML = countCartQuantity() ;
-        document.querySelectorAll(`.js-added-to-cart-${productId}`).forEach(element =>{
-        element.classList.add('added-to-cart-visible');})
+    button.addEventListener('click', function() {   
+        const { productId } = button.dataset;
         
-    })
-})
+        addToCart(productId);
+        document.querySelector('.js-cart-quantity').innerHTML = countCartQuantity();
+        
+        const addedElements = document.querySelectorAll(`.js-added-to-cart-${productId}`);
+        addedElements.forEach(element => {
+            element.classList.add('added-to-cart-visible');
+        });
+        
+        const previousTimeoutId = addedMessageTimeouts[productId];
+        if (previousTimeoutId) {
+            clearTimeout(previousTimeoutId);
+        }
+        
+        const timeoutId = setTimeout(function() {
+            addedElements.forEach(element => {
+                element.classList.remove('added-to-cart-visible');
+            });
+        }, 2000);
+        
+        addedMessageTimeouts[productId] = timeoutId;
+    });
+});
