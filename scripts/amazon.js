@@ -14,20 +14,39 @@ function buildQuantitySelect(product){
     return html ;
 }
 
+function buildProductHTML(product) {
+    const { id, image, name, rating, priceCents } = product;
 
-function buildProductHTML(product){
-    let html = `<div class = "product-container">` ;
-    html += `<div class="product-image-container"><img class="product-image" src = ${product.image} ></div>` ;
-    html += `<div class="product-name limit-text-to-2-lines">${product.name}</div> ` ; 
-    html += `<div class="product-rating-container"> <img class="product-rating-stars" src = "images/ratings/rating-${product.rating.stars * 10}.png"> <div class= "product-rating-count link-primary">${product.rating.count} </div></div>` ;
-    html += `<div class= "product-price"> $${formatCurrency(product.priceCents)} </div> `;
-    html += `<div class = "product-quantity-container"> ${buildQuantitySelect(product)}</div>` ;
-    html += `<div class= "product-spacer"> </div>`;
-    html += `<div class= "added-to-cart"> <img src="images/icons/checkmark.png">Added</div>`;
-    html += `<button class= "add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">Add to Cart</button>` ;
-    html += `</div>` ;
-    
-    return html ;
+    return `
+        <div class="product-container">
+            <div class="product-image-container">
+                <img class="product-image" src="${image}">
+            </div>
+            
+            <div class="product-name limit-text-to-2-lines">${name}</div>
+            
+            <div class="product-rating-container">
+                <img class="product-rating-stars" src="images/ratings/rating-${rating.stars * 10}.png">
+                <div class="product-rating-count link-primary">${rating.count}</div>
+            </div>
+            
+            <div class="product-price">$${formatCurrency(priceCents)}</div>
+            
+            <div class="product-quantity-container">
+                ${buildQuantitySelect(product)}
+            </div>
+            
+            <div class="product-spacer"></div>
+            
+            <div class="added-to-cart added-to-cart-js-${id}">
+                <img src="images/icons/checkmark.png">Added
+            </div>
+            
+            <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${id}">
+                Add to Cart
+            </button>
+        </div>
+    `;
 }
 
 function buildAllProductsHTML(products){
