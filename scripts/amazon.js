@@ -3,8 +3,8 @@ import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js'; 
 
 
-function buildQuantitySelect(){
-    let html = `<select> <option selected value="1">1</option>` ; 
+function buildQuantitySelect(product){
+    let html = `<select class = "js-quantity-selector-${product.id}"> <option selected value="1">1</option>` ; 
     for(let i = 2; i<=10; i++){
         html += `<option value="${i}">${i}</option> ` ;
     }
@@ -21,7 +21,7 @@ function buildProductHTML(product){
     html += `<div class="product-name limit-text-to-2-lines">${product.name}</div> ` ; 
     html += `<div class="product-rating-container"> <img class="product-rating-stars" src = "images/ratings/rating-${product.rating.stars * 10}.png"> <div class= "product-rating-count link-primary">${product.rating.count} </div></div>` ;
     html += `<div class= "product-price"> $${formatCurrency(product.priceCents)} </div> `;
-    html += `<div class = "product-quantity-container"> ${buildQuantitySelect()}</div>` ;
+    html += `<div class = "product-quantity-container"> ${buildQuantitySelect(product)}</div>` ;
     html += `<div class= "product-spacer"> </div>`;
     html += `<div class= "added-to-cart"> <img src="images/icons/checkmark.png">Added</div>`;
     html += `<button class= "add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">Add to Cart</button>` ;
