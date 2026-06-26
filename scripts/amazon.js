@@ -63,7 +63,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
     button.addEventListener('click', function(){
 
-        const productId = button.dataset.productId ;
+        const {productId} = button.dataset ;
         addToCart(productId);
         document.querySelector('.js-cart-quantity').innerHTML = countCartQuantity() ;
         

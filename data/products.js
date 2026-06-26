@@ -660,12 +660,12 @@ export const products = [
   {
     id: "id1",
     image: "images/products/backpack.jpg",
-    name: "amazon basics classic backpack",
+    name: "Amazon basics classic backpack - Black ",
     rating: {
       stars: 3.5,
       count: 2466
     },
-    priceCents: 3400,
+    priceCents: 3399,
     keywords: [
       "backpack",
       "pack",
@@ -675,12 +675,12 @@ export const products = [
   {
     id: "id2",
     image: "images/products/umbrella.jpg",
-    name: "compact travel umbrella",
+    name: "Compact travel umbrella - Green",
     rating: {
       stars: 4.5,
       count: 1916
     },
-    priceCents: 1000,
+    priceCents: 999,
     keywords: [
       "umbrella",
       "rain",
