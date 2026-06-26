@@ -5,21 +5,22 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js' ;
 
 
 function buildProductHTML(cartProduct, product) {
+    const {id, image, name, priceCents} = product ;
     return `
-        <div class="cart-item-container js-cart-item-container-${product.id}">
+        <div class="cart-item-container js-cart-item-container-${id}">
             <div class="delivery-date">Delivery date: Tuesday, June 21</div>
             
             <div class="cart-item-details-grid">
-                <img class="product-image" src="${product.image}">
+                <img class="product-image" src="${image}">
                 
                 <div class="cart-item-details">
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-price">$${formatCurrency(product.priceCents)}</div>
+                    <div class="product-name">${name}</div>
+                    <div class="product-price">$${formatCurrency(priceCents)}</div>
                     
                     <div class="product-quantity">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary">Update</span>
-                        <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${product.id}">Delete</span>
+                        <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${id}">Delete</span>
                     </div>
                 </div>
 
@@ -27,7 +28,7 @@ function buildProductHTML(cartProduct, product) {
                     <div class="delivery-options-title">Choose a delivery option:</div>
                     
                     <div class="delivery-option">
-                        <input type="radio" checked class="delivery-option-input" name="delivery-option-${product.id}">
+                        <input type="radio" checked class="delivery-option-input" name="delivery-option-${id}">
                         <div>
                             <div class="delivery-option-date delivery-option-date-js-0"></div>
                             <div class="delivery-option-price">FREE Shipping</div>
@@ -35,7 +36,7 @@ function buildProductHTML(cartProduct, product) {
                     </div>
                     
                     <div class="delivery-option">
-                        <input type="radio" class="delivery-option-input" name="delivery-option-${product.id}">
+                        <input type="radio" class="delivery-option-input" name="delivery-option-${id}">
                         <div>
                             <div class="delivery-option-date delivery-option-date-js-1"></div>
                             <div class="delivery-option-price">$4.99 - Shipping</div>
@@ -43,7 +44,7 @@ function buildProductHTML(cartProduct, product) {
                     </div>
                     
                     <div class="delivery-option">
-                        <input type="radio" class="delivery-option-input" name="delivery-option-${product.id}">
+                        <input type="radio" class="delivery-option-input" name="delivery-option-${id}">
                         <div>
                             <div class="delivery-option-date delivery-option-date-js-2"></div>
                             <div class="delivery-option-price">$9.99 - Shipping</div>
