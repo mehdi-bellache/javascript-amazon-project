@@ -62,23 +62,6 @@ document.querySelectorAll('.js-delete-link').forEach(deleteButton => {deleteButt
     })
 });
 
-
-const a = dayjs() ;
-const b = a.add(7, 'day');
-const c = a.add(3, 'day');
-const d = a.add(1, 'day');
-
-document.querySelectorAll('.delivery-option-date-js-0').forEach(deliveryOption =>{
-    deliveryOption.innerHTML = b.format('dddd, D MMMM');
-})
-document.querySelectorAll('.delivery-option-date-js-1').forEach(deliveryOption =>{
-    deliveryOption.innerHTML = c.format('dddd, D MMMM');
-})
-document.querySelectorAll('.delivery-option-date-js-2').forEach(deliveryOption =>{
-    deliveryOption.innerHTML = d.format('dddd, D MMMM');
-})
-
-
 function deliveryOptionsHTML(product){
     const html = '';
     deliveryOptions.forEach(deliveryOption =>{
