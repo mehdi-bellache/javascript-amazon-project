@@ -38,7 +38,7 @@ function buildProductHTML(product) {
             
             <div class="product-spacer"></div>
             
-            <div class="added-to-cart added-to-cart-js-${id}">
+            <div class="added-to-cart js-added-to-cart-${id}">
                 <img src="images/icons/checkmark.png">Added
             </div>
             
@@ -85,6 +85,8 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         const {productId} = button.dataset ;
         addToCart(productId);
         document.querySelector('.js-cart-quantity').innerHTML = countCartQuantity() ;
+        document.querySelectorAll(`.js-added-to-cart-${productId}`).forEach(element =>{
+        element.classList.add('added-to-cart-visible');})
         
     })
 })
