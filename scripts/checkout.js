@@ -27,7 +27,7 @@ function buildProductHTML(cartProduct, product) {
 
                 <div class="delivery-options">
                     <div class="delivery-options-title">Choose a delivery option:</div>
-                    ${deliveryOptionsHTML()}
+                    ${deliveryOptionsHTML(cartProduct, product)}
                 </div>
             </div>
         </div>
@@ -62,16 +62,17 @@ document.querySelectorAll('.js-delete-link').forEach(deleteButton => {deleteButt
     })
 });
 
-function deliveryOptionsHTML(product){
-    const html = '';
+function deliveryOptionsHTML(cartProduct, product){
+    let html = ``;
     deliveryOptions.forEach(deliveryOption =>{
         const today = dayjs();
         const deliveryDate = today.add(deliveryOption.deliveryDays, 'days').format('dddd, D MMMM');;
         const deliveryPrice = deliveryOption.priceCents;
-        const priceString = deliveryPrice === 0 ? `FREE Shipping` : `$${(deliveryPrice / 100).toFixed()} - Shipping` ;
+        const priceString = deliveryPrice === 0 ? `FREE Shipping` : `$${formatCurrency(deliveryPrice)} - Shipping` ;
+        const isChecked = deliveryOption.id === cartProduct.deliveryOptionId ;
         html += `
             <div class="delivery-option">
-                <input type="radio" checked class="delivery-option-input" name="delivery-option-${product.id}">
+                <input type="radio" ${isChecked ? 'checked' : ''}} class="delivery-option-input" name="delivery-option-${product.id}">
                 <div>
                     <div class="delivery-option-date delivery-option-date-js">${deliveryDate}</div>
                     <div class="delivery-option-price">${priceString}</div>
