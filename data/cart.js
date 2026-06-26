@@ -5,6 +5,7 @@ function saveToStorage(){
 }
 
 export function addToCart(productId){
+    const quantityChoosed = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
     const matchingItem = cart.find(element => element.productId === productId);
     if(matchingItem){
         matchingItem.quantity ++ ;
@@ -12,7 +13,7 @@ export function addToCart(productId){
     else{
         cart.push({        
             productId: productId,
-            quantity: 1,
+            quantity: quantityChoosed,
             deliveryOptionId: '1'
         })
     }
@@ -20,7 +21,6 @@ export function addToCart(productId){
     saveToStorage();
 
 }
-
 
 export function deleteProductFromCart(productId){
     const newCart = cart.filter(cartElement =>{ 

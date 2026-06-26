@@ -30,8 +30,6 @@ function buildProductHTML(product){
     return html ;
 }
 
-
-
 function buildAllProductsHTML(products){
     let allProductsHTML = `` ;
     products.forEach(product => {
