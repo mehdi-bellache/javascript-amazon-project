@@ -656,5 +656,36 @@ export const products = [
       "apparel",
       "mens"
     ]
-  }
+  },
+  {
+    id: "id1",
+    image: "images/products/backpack.jpg",
+    name: "amazon basics classic backpack",
+    rating: {
+      stars: 3.5,
+      count: 2466
+    },
+    priceCents: 3400,
+    keywords: [
+      "backpack",
+      "pack",
+      "Rucksack"
+    ]
+  },
+  {
+    id: "id2",
+    image: "images/products/umbrella.jpg",
+    name: "compact travel umbrella",
+    rating: {
+      stars: 4.5,
+      count: 1916
+    },
+    priceCents: 1000,
+    keywords: [
+      "umbrella",
+      "rain",
+      "Rainshield"
+    ]
+  },
+
 ];
