@@ -8,6 +8,9 @@ function countItems(){
         itemsNumber += element.quantity ; 
     });
 
-}
+    return itemsNumber ;
 
-document.querySelector('.js-items').innerHTML = `Items ${countItems()}:` ;
+}
+function renderProducts(){
+    document.querySelector('.js-items').innerHTML = `Items ${countItems()}:` ;
+}

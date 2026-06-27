@@ -80,7 +80,7 @@ function buildAllProductsHTML(cart, products){
 
 }
 
-export function renderProducts(){
+export function renderOrderSummary(){
     document.querySelector('.js-order-summary').innerHTML = buildAllProductsHTML(cart, products);
 
     document.querySelectorAll('.js-delete-link').forEach(deleteButton => {
