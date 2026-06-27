@@ -46,8 +46,9 @@ function calculateTotalBeforeTax(){
     return totalCartPriceCents() + totalShippingCents() ;
 }
 
-const totalBeforeTax = ;
-const tax = totalBeforeTax / 10 ;
+function calculateTax(){
+    return calculateTotalBeforeTax() / 10 ;
+}
 
 export function renderPaymentSummary(){
 
