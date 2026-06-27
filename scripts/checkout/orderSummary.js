@@ -97,7 +97,7 @@ export function renderOrderSummary(){
         element.addEventListener('click', function(){
             const {productId, deliveryOptionId} = element.dataset ;
             updateDeliveryOption(productId, deliveryOptionId);
-            renderProducts();
+            renderOrderSummary();
             
         })
 
