@@ -28,16 +28,25 @@ function countPrice(){
 }
 
 function countShippingPrice(){
+    let price = 0 ;
     cart.forEach(element =>{
         deliveryOptions.forEach(deliveryOption =>{
+            if(deliveryOption.id === cart.deliveryOption){
+                price += deliveryOption.priceCents ;
+            }
 
         })
     })
 
+    return price ;
+
 }
 
 export function renderPaymentSummary(){
-    document.querySelector('.js-items').innerHTML = `Items (${countItems()}):` ;
 
+    document.querySelector('.js-items').innerHTML = `Items (${countItems()}):` ;
     document.querySelector('.js-payment-summary-money').innerHTML = `$${countPrice()}` ;
+    document.querySelector('.js-payment-summary-money').innerHTML = `$${countPrice()}` ;
+    countShippingPrice();
+
 }
