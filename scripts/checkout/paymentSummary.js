@@ -4,26 +4,28 @@ import {formatCurrency} from '.././utils/money.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 
 
-function countItems(){
-    let itemsNumber = 0 ;
-    cart.forEach(element => {
-        itemsNumber += element.quantity ; 
+function calculateCartQuantity(){
+    let totalQuantity = 0 ;
+    cart.forEach(cartItem => {
+        totalQuantity += cartItem.quantity ; 
     });
 
-    return itemsNumber ;
+    return totalQuantity ;
 
 }
 
-function countPrice(){
-    let cartPrice = 0 ;
-    cart.forEach(element => {
-        products.forEach(product => {if(element.productId === product.id ){
-            cartPrice += product.priceCents * element.quantity ;
-
-        }} )
+function calculateCartTotal() {
+    let totalCartPriceCents = 0;
+    
+    cart.forEach(cartItem => {
+        products.forEach(product => {
+            if (cartItem.productId === product.id) {
+                totalCartPriceCents += product.priceCents * cartItem.quantity;
+            }
+        });
     });
 
-    return formatCurrency(cartPrice) ;
+    return formatCurrency(totalCartPriceCents);
 }
 
 function countShippingPrice(){
@@ -37,11 +39,22 @@ function countShippingPrice(){
 
 }
 
+function calculateShippingTotalCents() {
+    let totalShippingCents = 0;
+    
+    cart.forEach(cartItem => { 
+        const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
+        if (deliveryOption) {
+            totalShippingCents += deliveryOption.priceCents;
+        }
+    });
+
+    return totalShippingCents;
+}
+
 export function renderPaymentSummary(){
 
-    document.querySelector('.js-items').innerHTML = `Items (${countItems()}):` ;
-    document.querySelector('.js-payment-summary-money').innerHTML = `$${countPrice()}` ;
-    document.querySelector('.js-payment-summary-money').innerHTML = `$${countPrice()}` ;
-    countShippingPrice();
-
+    document.querySelector('.js-items').innerHTML = `Items (${calculateCartQuantity()}):` ;
+    document.querySelector('.js-payment-summary-money').innerHTML = `$${countShippingPrice()}` ;
+    document.querySelector('.js-payment-summary-money').innerHTML = `$${calculateShippingTotalCents()}` ;
 }
