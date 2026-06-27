@@ -1,7 +1,7 @@
 import {cart} from '../../data/cart.js' ;
 import {products} from '../../data/products.js';
 import {formatCurrency} from '.././utils/money.js'; 
-import { deliveryOptions } from '../../data/deliveryOptions.js';
+import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 
 
 function countItems(){
@@ -24,18 +24,13 @@ function countPrice(){
     });
 
     return formatCurrency(cartPrice) ;
-
 }
 
 function countShippingPrice(){
     let price = 0 ;
     cart.forEach(element =>{
-        deliveryOptions.forEach(deliveryOption =>{
-            if(deliveryOption.id === cart.deliveryOption){
-                price += deliveryOption.priceCents ;
-            }
-
-        })
+        const deliveryOption = getDeliveryOption(element.deliveryOption);
+        price += deliveryOption.priceCents ;
     })
 
     return price ;
