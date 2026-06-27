@@ -14,7 +14,7 @@ function calculateCartQuantity(){
 
 }
 
-function calculateCartTotal() {
+function calculateCartTotalCents() {
     let totalCartPriceCents = 0;
     
     cart.forEach(cartItem => {
@@ -42,17 +42,51 @@ function calculateShippingTotalCents() {
     return totalShippingCents ;
 }
 
-function calculateTotalBeforeTax(){
+function calculateTotalCentsBeforeTax(){
     return totalCartPriceCents() + totalShippingCents() ;
 }
 
-function calculateTax(){
+function calculateTaxCents(){
     return calculateTotalBeforeTax() / 10 ;
 }
 
-export function renderPaymentSummary(){
+function calculateTotalAfterTax(){
+    return calculateTotalCentsBeforeTax() + calculateTaxCents() ;
+}
 
-    document.querySelector('.js-items').innerHTML = `Items (${calculateCartQuantity()}):` ;
-    document.querySelector('.js-payment-summary-money').innerHTML = `$${countShippingPrice()}` ;
-    document.querySelector('.js-payment-summary-money').innerHTML = `$${calculateShippingTotalCents()}` ;
+export function buildPaymentSummaryHTML(){
+
+    return `
+        <div class="payment-summary-title">
+            Order Summary
+        </div>
+
+        <div class="payment-summary-row">
+            <div>Items (${calculateCartQuantity()}:</div>
+            <div class="payment-summary-money">$${formatCurrency(calculateCartTotalCents())}</div>
+        </div>
+
+        <div class="payment-summary-row">
+            <div>Shipping &amp; handling:</div>
+            <div class="payment-summary-money">$${formatCurrency(calculateShippingTotalCents())}</div>
+        </div>
+
+        <div class="payment-summary-row subtotal-row">
+            <div>Total before tax:</div>
+            <div class="payment-summary-money">$${formatCurrency(calculateTotalCentsBeforeTax())}</div>
+        </div>
+
+        <div class="payment-summary-row">
+            <div>Estimated tax (10%):</div>
+            <div class="payment-summary-money">$${formatCurrency(calculateTaxCents())}</div>
+        </div>
+
+        <div class="payment-summary-row total-row">
+            <div>Order total:</div>
+            <div class="payment-summary-money">$${formatCurrency(calculateTotalAfterTax())}</div>
+        </div>
+
+        <button class="place-order-button button-primary">
+            Place your order
+        </button>` ;
 }
