@@ -43,11 +43,11 @@ function calculateShippingTotalCents() {
 }
 
 function calculateTotalCentsBeforeTax(){
-    return totalCartPriceCents() + totalShippingCents() ;
+    return calculateCartTotalCents() + calculateShippingTotalCents() ;
 }
 
 function calculateTaxCents(){
-    return calculateTotalBeforeTax() / 10 ;
+    return calculateTotalCentsBeforeTax() / 10 ;
 }
 
 function calculateTotalAfterTax(){
@@ -89,4 +89,9 @@ export function buildPaymentSummaryHTML(){
         <button class="place-order-button button-primary">
             Place your order
         </button>` ;
+}
+
+
+function renderPaymentSummary(){
+    document.querySelector('.js-payment-summary').innerHTML = buildPaymentSummaryHTML();
 }
