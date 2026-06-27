@@ -25,19 +25,9 @@ function calculateCartTotal() {
         });
     });
 
-    return formatCurrency(totalCartPriceCents);
+    return totalCartPriceCents ;
 }
 
-function countShippingPrice(){
-    let price = 0 ;
-    cart.forEach(element =>{
-        const deliveryOption = getDeliveryOption(element.deliveryOption);
-        price += deliveryOption.priceCents ;
-    })
-
-    return price ;
-
-}
 
 function calculateShippingTotalCents() {
     let totalShippingCents = 0;
@@ -49,8 +39,15 @@ function calculateShippingTotalCents() {
         }
     });
 
-    return totalShippingCents;
+    return totalShippingCents ;
 }
+
+function calculateTotalBeforeTax(){
+    return totalCartPriceCents() + totalShippingCents() ;
+}
+
+const totalBeforeTax = ;
+const tax = totalBeforeTax / 10 ;
 
 export function renderPaymentSummary(){
 
