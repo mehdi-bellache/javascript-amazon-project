@@ -54,7 +54,7 @@ function calculateTotalAfterTax(){
     return calculateTotalCentsBeforeTax() + calculateTaxCents() ;
 }
 
-export function buildPaymentSummaryHTML(){
+function buildPaymentSummaryHTML(){
 
     return `
         <div class="payment-summary-title">
@@ -62,7 +62,7 @@ export function buildPaymentSummaryHTML(){
         </div>
 
         <div class="payment-summary-row">
-            <div>Items (${calculateCartQuantity()}:</div>
+            <div>Items (${calculateCartQuantity()}):</div>
             <div class="payment-summary-money">$${formatCurrency(calculateCartTotalCents())}</div>
         </div>
 
@@ -92,6 +92,6 @@ export function buildPaymentSummaryHTML(){
 }
 
 
-function renderPaymentSummary(){
+export function renderPaymentSummary(){
     document.querySelector('.js-payment-summary').innerHTML = buildPaymentSummaryHTML();
 }
