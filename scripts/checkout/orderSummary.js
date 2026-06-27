@@ -2,7 +2,7 @@ import {cart, deleteProductFromCart, updateDeliveryOption} from '../../data/cart
 import {products} from '../../data/products.js';
 import {formatCurrency} from '.././utils/money.js'; 
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js' ;
-import { deliveryOptions } from '../../data/deliveryOptions.js';
+import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 
 
 
@@ -32,13 +32,10 @@ function buildProductHTML(cartProduct, product) {
     const {id, image, name, priceCents} = product ;
 
     const deliveryOptionId = cartProduct.deliveryOptionId ;
-    let deliveryDate ;
-    deliveryOptions.forEach(option =>{
-        if(option.id === deliveryOptionId){
-            const today = dayjs();
-            deliveryDate = today.add(option.deliveryDays, 'days').format('dddd, D MMMM');
-        }
-    })
+    const deliveryOption = getDeliveryOption(deliveryOptionId);
+    const today = dayjs();
+    const deliveryDate = today.add(deliveryOption.deliveryDays, 'days').format('dddd, D MMMM');
+
     return `
         <div class="cart-item-container js-cart-item-container-${id}">
             <div class="delivery-date">Delivery date: ${deliveryDate}</div>
