@@ -1,8 +1,7 @@
 import {cart} from '../../data/cart.js' ;
 import {products} from '../../data/products.js';
 import {formatCurrency} from '.././utils/money.js'; 
-
-
+import { deliveryOptions } from '../../data/deliveryOptions.js';
 
 
 function countItems(){
@@ -28,6 +27,14 @@ function countPrice(){
 
 }
 
+function countShippingPrice(){
+    cart.forEach(element =>{
+        deliveryOptions.forEach(deliveryOption =>{
+
+        })
+    })
+
+}
 
 export function renderPaymentSummary(){
     document.querySelector('.js-items').innerHTML = `Items (${countItems()}):` ;
