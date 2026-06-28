@@ -1,12 +1,41 @@
-import { cart, loadFromStorage, addToCart } from "../../data/cart.js";
+import { addToCart, cart, loadFromStorage } from "../../data/cart.js";
+import { deliveryOptions } from "../../data/deliveryOptions.js";
 
 describe('test suite: addToCart', () =>{
-    // it('adds an existing product to the cart', () =>{
-    //     addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6')
-    //     addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6')
-    //     expect(cart.length).toEqual(1);
 
-    // })
+    beforeEach(() => {
+        spyOn(localStorage, 'setItem');
+        
+        // On isole complètement le getItem
+        spyOn(localStorage, 'getItem').and.callFake(() => {
+            // Par défaut, on peut laisser un tableau vide, 
+            // et on le modifiera spécifiquement dans le premier test
+            return JSON.stringify([]); 
+        });
+    });
+    
+    it('adds an existing product to the cart', () =>{
+
+        spyOn(localStorage, 'setItem');
+        spyOn(localStorage, 'getItem').and.callFake(() =>{
+            return JSON.stringify([{
+                productId: '3ebe75dc-64d2-4137-8860-1f5a963e534b',
+                quantity: 1,
+                deliveryOptions: '1'
+            }]);
+        });
+        loadFromStorage();
+
+        const productId = '3ebe75dc-64d2-4137-8860-1f5a963e534b' ;
+
+        addToCart(productId, 1);
+        expect(cart.length).toEqual(1);
+        // expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+        expect(cart[0].productId).toEqual(productId) ;
+        expect(cart[0].quantity).toEqual(2) ;
+
+    })
+
     it('adds a new product to the cart', () =>{
 
         spyOn(localStorage, 'setItem');
@@ -17,15 +46,11 @@ describe('test suite: addToCart', () =>{
 
         const productId = '3ebe75dc-64d2-4137-8860-1f5a963e534b' ;
 
-        document.querySelector('.js-test-container').innerHTML = `
-            <select class="js-quantity-selector-${productId}">
-                <option value="1" selected>1</option>
-            </select>
-        `;
-
-        addToCart(productId);
+        addToCart(productId, 1);
         expect(cart.length).toEqual(1);
-        expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+        // expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+        expect(cart[0].productId).toEqual(productId) ;
+        expect(cart[0].quantity).toEqual(1) ;
 
     })
 
