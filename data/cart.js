@@ -8,7 +8,7 @@ export function addToCart(productId){
     const matchingItem = cart.find(element => element.productId === productId);
     const quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
     if(matchingItem){
-        matchingItem.quantity ++ ;
+        matchingItem.quantity += quantity ;
     }
     else{
         cart.push({        
