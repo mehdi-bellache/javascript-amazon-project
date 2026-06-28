@@ -66,17 +66,6 @@ function renderProducts(){
 renderProducts() ;
 
 
-function countCartQuantity(){
-    let cartQuantity = 0 ;
-
-    cart.forEach(element =>{
-        cartQuantity += element.quantity ;
-    })
-
-    return cartQuantity ;
-
-}
-
 function calculateCartQuantity(){
     let totalQuantity = 0 ;
     cart.forEach(cartItem => {
@@ -96,7 +85,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
         const quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
         addToCart(productId, quantity);
-        document.querySelector('.js-cart-quantity').innerHTML = countCartQuantity();
+        document.querySelector('.js-cart-quantity').innerHTML = calculateCartQuantity();
         
         const addedElements = document.querySelectorAll(`.js-added-to-cart-${productId}`);
         addedElements.forEach(element => {
