@@ -3,11 +3,11 @@ export let cart ;
 loadFromStorage();
 
 export function loadFromStorage(){
-    cart = JSON.parse(localStorage.getItem('cart')) || [] ;
+    cart = JSON.parse(localStorage.getItem('cart')) ;
 }
 
 function saveToStorage(){
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart)) || [] ;
 }
 
 export function addToCart(productId, quantity){

@@ -4,16 +4,6 @@ import {formatCurrency} from '.././utils/money.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 
 
-function calculateCartQuantity(){
-    let totalQuantity = 0 ;
-    cart.forEach(cartItem => {
-        totalQuantity += cartItem.quantity ; 
-    });
-
-    return totalQuantity ;
-
-}
-
 function calculateCartTotalCents() {
     let totalCartPriceCents = 0;
     

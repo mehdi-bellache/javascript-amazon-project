@@ -3,17 +3,6 @@ import { deliveryOptions } from "../../data/deliveryOptions.js";
 
 describe('test suite: addToCart', () =>{
 
-    beforeEach(() => {
-        spyOn(localStorage, 'setItem');
-        
-        // On isole complètement le getItem
-        spyOn(localStorage, 'getItem').and.callFake(() => {
-            // Par défaut, on peut laisser un tableau vide, 
-            // et on le modifiera spécifiquement dans le premier test
-            return JSON.stringify([]); 
-        });
-    });
-    
     it('adds an existing product to the cart', () =>{
 
         spyOn(localStorage, 'setItem');
@@ -42,7 +31,9 @@ describe('test suite: addToCart', () =>{
         spyOn(localStorage, 'getItem').and.callFake(() =>{
             return JSON.stringify([]);
         });
+
         loadFromStorage();
+
 
         const productId = '3ebe75dc-64d2-4137-8860-1f5a963e534b' ;
 

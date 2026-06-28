@@ -77,6 +77,16 @@ function countCartQuantity(){
 
 }
 
+function calculateCartQuantity(){
+    let totalQuantity = 0 ;
+    cart.forEach(cartItem => {
+        totalQuantity += cartItem.quantity ; 
+    });
+
+    return totalQuantity ;
+
+}
+
 const addedMessageTimeouts = {};
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
