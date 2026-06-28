@@ -1,8 +1,7 @@
-import {cart} from '../../data/cart.js' ;
+import {cart, calculateCartQuantity} from '../../data/cart.js' ;
 import {products} from '../../data/products.js';
 import {formatCurrency} from '.././utils/money.js'; 
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
-import { calculateCartQuantity } from '../amazon.js' ;
 
 
 function calculateCartTotalCents() {
