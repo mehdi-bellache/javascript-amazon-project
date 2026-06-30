@@ -81,7 +81,7 @@ function buildAllProductsHTML(cart, products){
 }
 
 export function renderOrderSummary(){
-    document.querySelector('.js-order-summary').innerHTML = buildAllProductsHTML(cart, products);
+    document.querySelector('.js-order-summary').innerHTML = buildAllProductsHTML(cart, products) ;
 
     document.querySelectorAll('.js-delete-link').forEach(deleteButton => {
         deleteButton.addEventListener('click', () =>{
