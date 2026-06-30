@@ -48,12 +48,12 @@ function buildProductHTML(cartProduct, product) {
                     <div class="product-name">${name}</div>
                     <div class="product-price">$${formatCurrency(priceCents)}</div>
                     
-                    <div class="product-quantity js-product-quantity-${cartProduct.id}">
+                    <div class="product-quantity js-product-quantity-${id}">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
                         <input class="quantity-input">
                         <span class="save-quantity-link link-primary js-link-primary">Save</span>
-                        <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${id}">Delete</span>
+                        <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${id}" data-product-id="${id}">Delete</span>
                     </div>
                 </div>
 
