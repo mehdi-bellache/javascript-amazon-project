@@ -121,6 +121,11 @@
 
 .quantity-input{
   width: 30px;
+  display: none;
+}
+
+.save-quantity-link{
+  display: none;
 }
 
 @media (max-width: 1000px) {
