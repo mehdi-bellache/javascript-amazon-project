@@ -81,12 +81,6 @@ function buildPaymentSummaryHTML(){
         </button>` ;
 }
 
-export function updateCartQuantity(){
-    document.querySelector('.js-checkout-header-middle-section').innerHTML = `Checkout (<a class="return-to-home-link"
-            href="amazon.html">${calculateCartQuantity()}</a>)` ;
-}
-
 export function renderPaymentSummary(){
     document.querySelector('.js-payment-summary').innerHTML = buildPaymentSummaryHTML();
-    updateCartQuantity();
 }
