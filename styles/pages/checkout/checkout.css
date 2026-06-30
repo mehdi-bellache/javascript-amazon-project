@@ -128,6 +128,15 @@
   display: none;
 }
 
+.is-editing-quantity .quantity-input, .is-editing-quantity .save-quantity-link{
+  display: initial;
+}
+
+.is-editing-quantity .quantity-label, .is-editing-quantity .save-quantity-link{
+  display: hidden;
+}
+
+
 @media (max-width: 1000px) {
   .delivery-options {
     /* grid-column: 1 means this element will be placed
