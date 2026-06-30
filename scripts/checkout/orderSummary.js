@@ -50,7 +50,7 @@ function buildProductHTML(cartProduct, product) {
                     
                     <div class="product-quantity">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
-                        <span class="update-quantity-link link-primary">Update</span>
+                        <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
                         <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${id}">Delete</span>
                     </div>
                 </div>
@@ -84,11 +84,23 @@ export function renderOrderSummary(){
     document.querySelectorAll('.js-delete-link').forEach(deleteButton => {
         deleteButton.addEventListener('click', () =>{
 
-            const productId = deleteButton.dataset.productId ;
+            const {productId} = deleteButton.dataset ;
             deleteProductFromCart(productId);
             document.querySelector(`.js-cart-item-container-${productId}`).remove();
             renderPaymentSummary();
             renderCheckoutHeader();
+        })
+    });
+
+    document.querySelectorAll('.js-update-link').forEach(updateButton => {
+        updateButton.addEventListener('click', () =>{
+            const {productId} = updateButton.dataset ;
+            console.log(productId);
+
+            // deleteProductFromCart(productId);
+            // document.querySelector(`.js-cart-item-container-${productId}`).remove();
+            // renderPaymentSummary();
+            // renderCheckoutHeader();
         })
     });
 
