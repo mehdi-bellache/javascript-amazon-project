@@ -38,7 +38,7 @@ function buildProductHTML(cartProduct, product) {
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days').format('dddd, D MMMM');
 
     return `
-        <div class="cart-item-container js-cart-item-container-${id}">
+        <div class="cart-item-container js-cart-item-container js-cart-item-container-${id}">
             <div class="delivery-date">Delivery date: ${deliveryDate}</div>
             
             <div class="cart-item-details-grid">
@@ -48,7 +48,7 @@ function buildProductHTML(cartProduct, product) {
                     <div class="product-name">${name}</div>
                     <div class="product-price">$${formatCurrency(priceCents)}</div>
                     
-                    <div class="product-quantity">
+                    <div class="product-quantity js-product-quantity-${cartProduct.id}">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
                         <input class="quantity-input">
