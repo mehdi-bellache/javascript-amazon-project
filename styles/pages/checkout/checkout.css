@@ -132,8 +132,8 @@
   display: initial;
 }
 
-.is-editing-quantity .quantity-label, .is-editing-quantity .save-quantity-link{
-  display: hidden;
+.is-editing-quantity .quantity-label, .is-editing-quantity .delete-quantity-link{
+  display: none;
 }
 
 
