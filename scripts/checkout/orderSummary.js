@@ -51,6 +51,8 @@ function buildProductHTML(cartProduct, product) {
                     <div class="product-quantity">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
+                        <input class="quantity-input">
+                        <span class="save-quantity-link link-primary">Save</input>
                         <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${id}">Delete</span>
                     </div>
                 </div>
@@ -96,9 +98,9 @@ export function renderOrderSummary(){
         updateButton.addEventListener('click', () =>{
             const {productId} = updateButton.dataset ;
             console.log(productId);
+            document.querySelector(`.js-cart-item-container-${productId}`).remove();
 
             // deleteProductFromCart(productId);
-            // document.querySelector(`.js-cart-item-container-${productId}`).remove();
             // renderPaymentSummary();
             // renderCheckoutHeader();
         })
