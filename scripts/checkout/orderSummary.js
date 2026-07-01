@@ -51,7 +51,7 @@ function buildProductHTML(cartProduct, product) {
                     <div class="product-quantity js-product-quantity-${id}">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
-                        <input class="quantity-input">
+                        <input class="quantity-input js-quantity-input">
                         <span class="save-quantity-link link-primary js-save-link" data-product-id="${id}">Save</span>
                         <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${id}" data-product-id="${id}">Delete</span>
                     </div>
@@ -108,6 +108,7 @@ export function renderOrderSummary(){
         saveButton.addEventListener('click', () =>{
             const {productId} = saveButton.dataset ;
             document.querySelector(`.js-cart-item-container-${productId}`).classList.remove('is-editing-quantity');
+            const quantity = Number(document.querySelector(`.js-quantity-input`).value);
         })
     })
 
