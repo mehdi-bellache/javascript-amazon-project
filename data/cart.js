@@ -7,7 +7,7 @@ export function loadFromStorage(){
 }
 
 function saveToStorage(){
-    localStorage.setItem('cart', JSON.stringify(cart)) || [] ;
+    localStorage.setItem('cart', JSON.stringify(cart || []))  ;
 }
 
 export function addToCart(productId, quantity){

@@ -1,9 +1,7 @@
-import { loadFromStorage } from "./cart";
-
 const cart = {
     cartItems: undefined,
     loadFromStorage(){ this.cartItems = JSON.parse(localStorage.getItem('cart-oop')) ; },
-    saveToStorage(){ localStorage.setItem('cart-oop', JSON.stringify(this.cartItems)) || [] ; },
+    saveToStorage(){ localStorage.setItem('cart-oop', JSON.stringify(this.cartItems || [])) ; },
     addToCart(productId, quantity){
         const matchingItem = this.cartItems.find(element => element.productId === productId);
         if(matchingItem){
@@ -28,7 +26,7 @@ const cart = {
         })
         this.cartItems = newCart ;
 
-        saveToStorage();
+        this.saveToStorage();
     },
     calculateCartQuantity(){
         let totalQuantity = 0 ;

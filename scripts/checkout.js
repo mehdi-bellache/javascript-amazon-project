@@ -1,6 +1,7 @@
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js" ;
 import { calculateCartQuantity } from "../data/cart.js" ;
+import '.././data/cart-oop.js' ;
 
 
 // je dois faire un nettoyage a mon code. !!!!
