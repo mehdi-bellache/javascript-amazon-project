@@ -51,7 +51,7 @@ function buildProductHTML(cartProduct, product) {
                     <div class="product-quantity js-product-quantity-${id}">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
-                        <input type = "number" min= "0" max ="999"class="quantity-input js-quantity-input">
+                        <input type = "number" min= "0" max ="999"class="quantity-input js-quantity-input-${id}">
                         <span class="save-quantity-link link-primary js-save-link" data-product-id="${id}">Save</span>
                         <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${id}" data-product-id="${id}">Delete</span>
                     </div>
@@ -80,6 +80,15 @@ function buildAllProductsHTML(cart, products){
 
 }
 
+function saveQuantity(productId){
+    document.querySelector(`.js-cart-item-container-${productId}`).classList.remove('is-editing-quantity');
+    const newQuantity = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
+    updateQuantity(productId, newQuantity);
+    renderOrderSummary();
+    document.querySelector('.js-checkout-header-middle-section').innerHTML = `Checkout (<a class="return-to-home-link"
+        href="amazon.html">${calculateCartQuantity()}</a>)` ;
+}
+
 export function renderOrderSummary(){
     document.querySelector('.js-order-summary').innerHTML = buildAllProductsHTML(cart, products) ;
 
@@ -104,12 +113,14 @@ export function renderOrderSummary(){
     document.querySelectorAll('.js-save-link').forEach((saveButton) =>{
         saveButton.addEventListener('click', () =>{
             const {productId} = saveButton.dataset ;
-            document.querySelector(`.js-cart-item-container-${productId}`).classList.remove('is-editing-quantity');
-            const newQuantity = Number(document.querySelector(`.js-quantity-input`).value);
-            updateQuantity(productId, newQuantity);
-            renderOrderSummary();
-            document.querySelector('.js-checkout-header-middle-section').innerHTML = `Checkout (<a class="return-to-home-link"
-                    href="amazon.html">${calculateCartQuantity()}</a>)` ;
+            saveQuantity(productId);
+        })
+
+        saveButton.addEventListener('keydown', (event) =>{
+            if(event.key === 'Enter'){
+                const {productId} = saveButton.dataset ;
+                saveQuantity(productId);
+            }
         })
     })
 
