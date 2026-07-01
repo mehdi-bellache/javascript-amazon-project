@@ -1,22 +1,35 @@
-function Cart(localStorageKey){
-    const cart = {
-    cartItems: undefined,
-    loadFromStorage(){ this.cartItems = JSON.parse(localStorage.getItem(localStorageKey)) || [] ; },
-    saveToStorage(){ localStorage.setItem(localStorageKey, JSON.stringify(this.cartItems)) ; },
+class Cart{
+
+    cartItems;
+    localStorageKey;
+
+    constructor(localStorageKey){
+        this.localStorageKey =  localStorageKey;
+        this.loadFromStorage();
+    }
+    loadFromStorage(){ 
+        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [] ; 
+    }
+
+    saveToStorage(){ 
+        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems)) ;
+    }
+
     addToCart(productId, quantity){
         const matchingItem = this.cartItems.find(element => element.productId === productId);
         if(matchingItem){
             matchingItem.quantity += quantity ;
         }
         else{
-            this.cartItems.push({        
+            this.cartItems.push({     
                 productId,
                 quantity,
                 deliveryOptionId: '1'
             })
         }
         this.saveToStorage();
-    },
+    }
+
     deleteProductFromCart(productId){
         const newCart = this.cartItems.filter(cartElement =>{ 
             if( cartElement.productId === productId){
@@ -28,7 +41,8 @@ function Cart(localStorageKey){
         this.cartItems = newCart ;
 
         this.saveToStorage();
-    },
+    }
+
     calculateCartQuantity(){
         let totalQuantity = 0 ;
         this.cartItems.forEach(cartItem => {
@@ -36,7 +50,8 @@ function Cart(localStorageKey){
         });
 
         return totalQuantity ;
-    },
+    }
+
     updateDeliveryOption(productId, deliveryOptionId){
         let matchingItem ;
 
@@ -49,7 +64,8 @@ function Cart(localStorageKey){
         matchingItem.deliveryOptionId = deliveryOptionId ;
 
         this.saveToStorage();
-    },
+    }
+
     updateQuantity(productId, newQuantity){
         this.cartItems.forEach((cartItem) => {
             if(cartItem.productId === productId){
@@ -61,17 +77,14 @@ function Cart(localStorageKey){
     }
 
 
-    };
-    return cart ;
-
 }
 
-const cart = Cart('cart-oop');
+const cart = new Cart('cart-oop');
+const businessCart = new Cart('cart-business');
 
-const businessCart = Cart('cart-business');
-
-
-cart.loadFromStorage();
 
 console.log(cart);
 console.log(businessCart);
+
+console.log(cart instanceof Cart);
+console.log(businessCart instanceof Cart);
