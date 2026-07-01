@@ -1,4 +1,4 @@
-import {cart, deleteProductFromCart, updateDeliveryOption, updateQuantity} from '../../data/cart.js' ;
+import {cart, deleteProductFromCart, updateDeliveryOption, updateQuantity, calculateCartQuantity} from '../../data/cart.js' ;
 import {products} from '../../data/products.js';
 import {formatCurrency} from '.././utils/money.js'; 
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js' ;
@@ -98,9 +98,6 @@ export function renderOrderSummary(){
         updateButton.addEventListener('click', () =>{
             const {productId} = updateButton.dataset ;
             document.querySelector(`.js-cart-item-container-${productId}`).classList.add('is-editing-quantity');
-            // document.querySelector('.js-link-primary').style.visibility = "visible";
-            // renderPaymentSummary();
-            // renderCheckoutHeader();
         })
     });
 
@@ -110,6 +107,9 @@ export function renderOrderSummary(){
             document.querySelector(`.js-cart-item-container-${productId}`).classList.remove('is-editing-quantity');
             const newQuantity = Number(document.querySelector(`.js-quantity-input`).value);
             updateQuantity(productId, newQuantity);
+            renderOrderSummary();
+            document.querySelector('.js-checkout-header-middle-section').innerHTML = `Checkout (<a class="return-to-home-link"
+                    href="amazon.html">${calculateCartQuantity()}</a>)` ;
         })
     })
 
