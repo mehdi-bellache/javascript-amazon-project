@@ -51,7 +51,7 @@ function buildProductHTML(cartProduct, product) {
                     <div class="product-quantity js-product-quantity-${id}">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
-                        <input type = "number" min= "0" max ="999"class="quantity-input js-quantity-input-${id}">
+                        <input type = "number" min= "0" max ="999"class="quantity-input js-quantity-input js-quantity-input-${id}" data-product-id="${id}">
                         <span class="save-quantity-link link-primary js-save-link" data-product-id="${id}">Save</span>
                         <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${id}" data-product-id="${id}">Delete</span>
                     </div>
@@ -115,13 +115,17 @@ export function renderOrderSummary(){
             const {productId} = saveButton.dataset ;
             saveQuantity(productId);
         })
+    })
 
-        saveButton.addEventListener('keydown', (event) =>{
+    document.querySelectorAll('.js-quantity-input').forEach(inputField => {
+        inputField.addEventListener('keydown', (event) =>{
             if(event.key === 'Enter'){
-                const {productId} = saveButton.dataset ;
+                const {productId} = inputField.dataset ;
                 saveQuantity(productId);
             }
+
         })
+
     })
 
     document.querySelectorAll('.js-delivery-option').forEach(element =>{
