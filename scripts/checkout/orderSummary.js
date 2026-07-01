@@ -52,7 +52,7 @@ function buildProductHTML(cartProduct, product) {
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
                         <input class="quantity-input">
-                        <span class="save-quantity-link link-primary js-link-primary">Save</span>
+                        <span class="save-quantity-link link-primary js-save-link">Save</span>
                         <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${id}" data-product-id="${id}">Delete</span>
                     </div>
                 </div>
@@ -106,6 +106,12 @@ export function renderOrderSummary(){
             // renderCheckoutHeader();
         })
     });
+
+    document.querySelectorAll('.js-save-link').forEach((saveButton) =>{
+        saveButton.addEventListener('click', () =>[
+            
+        ])
+    })
 
     document.querySelectorAll('.js-delivery-option').forEach(element =>{
 
