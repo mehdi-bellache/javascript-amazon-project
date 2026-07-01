@@ -1,7 +1,7 @@
 const cart = {
     cartItems: undefined,
-    loadFromStorage(){ this.cartItems = JSON.parse(localStorage.getItem('cart-oop')) ; },
-    saveToStorage(){ localStorage.setItem('cart-oop', JSON.stringify(this.cartItems || [])) ; },
+    loadFromStorage(){ this.cartItems = JSON.parse(localStorage.getItem('cart-oop')) || [] ; },
+    saveToStorage(){ localStorage.setItem('cart-oop', JSON.stringify(this.cartItems)) ; },
     addToCart(productId, quantity){
         const matchingItem = this.cartItems.find(element => element.productId === productId);
         if(matchingItem){
@@ -63,6 +63,8 @@ const cart = {
 }
 
 cart.loadFromStorage();
+
+cart.addToCart('83d4ca15-0f35-48f5-b7a3-1ea210004f2e', 1);
 
 console.log(cart);
 
