@@ -51,7 +51,7 @@ function buildProductHTML(cartProduct, product) {
                     <div class="product-quantity js-product-quantity-${id}">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
-                        <input class="quantity-input js-quantity-input">
+                        <input type = "number" min= "0" max ="999"class="quantity-input js-quantity-input">
                         <span class="save-quantity-link link-primary js-save-link" data-product-id="${id}">Save</span>
                         <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${id}" data-product-id="${id}">Delete</span>
                     </div>
