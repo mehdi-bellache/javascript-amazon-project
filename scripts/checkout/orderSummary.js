@@ -52,7 +52,7 @@ function buildProductHTML(cartProduct, product) {
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
                         <input class="quantity-input">
-                        <span class="save-quantity-link link-primary js-save-link">Save</span>
+                        <span class="save-quantity-link link-primary js-save-link" data-product-id="${id}">Save</span>
                         <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${id}" data-product-id="${id}">Delete</span>
                     </div>
                 </div>
@@ -97,20 +97,18 @@ export function renderOrderSummary(){
     document.querySelectorAll('.js-update-link').forEach(updateButton => {
         updateButton.addEventListener('click', () =>{
             const {productId} = updateButton.dataset ;
-            console.log(productId);
             document.querySelector(`.js-cart-item-container-${productId}`).classList.add('is-editing-quantity');
             // document.querySelector('.js-link-primary').style.visibility = "visible";
-
-            // deleteProductFromCart(productId);
             // renderPaymentSummary();
             // renderCheckoutHeader();
         })
     });
 
     document.querySelectorAll('.js-save-link').forEach((saveButton) =>{
-        saveButton.addEventListener('click', () =>[
-            
-        ])
+        saveButton.addEventListener('click', () =>{
+            const {productId} = saveButton.dataset ;
+            document.querySelector(`.js-cart-item-container-${productId}`).classList.remove('is-editing-quantity');
+        })
     })
 
     document.querySelectorAll('.js-delivery-option').forEach(element =>{
