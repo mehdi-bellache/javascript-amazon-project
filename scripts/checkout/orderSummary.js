@@ -1,4 +1,4 @@
-import {cart, deleteProductFromCart, updateDeliveryOption} from '../../data/cart.js' ;
+import {cart, deleteProductFromCart, updateDeliveryOption, updateQuantity} from '../../data/cart.js' ;
 import {products} from '../../data/products.js';
 import {formatCurrency} from '.././utils/money.js'; 
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js' ;
@@ -108,7 +108,8 @@ export function renderOrderSummary(){
         saveButton.addEventListener('click', () =>{
             const {productId} = saveButton.dataset ;
             document.querySelector(`.js-cart-item-container-${productId}`).classList.remove('is-editing-quantity');
-            const quantity = Number(document.querySelector(`.js-quantity-input`).value);
+            const newQuantity = Number(document.querySelector(`.js-quantity-input`).value);
+            updateQuantity(productId, newQuantity);
         })
     })
 
