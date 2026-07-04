@@ -30,7 +30,7 @@ function buildProductHTML(product) {
                 <div class="product-rating-count link-primary">${rating.count}</div>
             </div>
             
-            <div class="product-price">$${formatCurrency(priceCents)}</div>
+            <div class="product-price">$${product.getPrice(priceCents)}</div>
             
             <div class="product-quantity-container">
                 ${buildQuantitySelect(product)}
