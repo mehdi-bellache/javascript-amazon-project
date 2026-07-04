@@ -37,7 +37,6 @@ function buildProductHTML(product) {
 
             ${product.extraInfoHTML()}
 
-            
             <div class="product-spacer"></div>
             
             <div class="added-to-cart js-added-to-cart-${id}">
