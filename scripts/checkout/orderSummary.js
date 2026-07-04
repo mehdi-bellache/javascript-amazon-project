@@ -46,7 +46,7 @@ function buildProductHTML(cartProduct, product) {
                 
                 <div class="cart-item-details">
                     <div class="product-name">${name}</div>
-                    <div class="product-price">$${formatCurrency(priceCents)}</div>
+                    <div class="product-price">$${product.getPrice()}</div>
                     
                     <div class="product-quantity js-product-quantity-${id}">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
