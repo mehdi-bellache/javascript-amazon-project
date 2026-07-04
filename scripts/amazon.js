@@ -34,6 +34,9 @@ function buildProductHTML(product) {
             <div class="product-quantity-container">
                 ${buildQuantitySelect(product)}
             </div>
+
+            ${product.extraInfoHTML()}
+
             
             <div class="product-spacer"></div>
             
