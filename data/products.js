@@ -1,11 +1,11 @@
 class Product{
-  #id;
+  id;
   image;
   name;
   rating;
   priceCents;
   constructor(productDetails){
-    this.#id = productDetails.id;
+    this.id = productDetails.id;
     this.image = productDetails.image;
     this.name = productDetails.name;
     this.rating = productDetails.rating;
@@ -27,6 +27,7 @@ const product1 = new Product({
     "apparel"
   ]
 });
+
 console.log(product1);
 
 
@@ -720,4 +721,8 @@ export const products = [
     ]
   },
 
-];
+].map((productDetails) => {
+  return new Product(productDetails);
+});
+
+console.log(products);
