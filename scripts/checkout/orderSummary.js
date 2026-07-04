@@ -81,6 +81,9 @@ function buildAllProductsHTML(cart, products){
 
 }
 
+// Ici je dois aussi nettoyer le code, J'ai pas aime vraiment la fonction saveQuantity. 
+// je peux creer des fonctions pour que renderOrderSummary a moins de ligne de code.
+
 function saveQuantity(productId){
     document.querySelector(`.js-cart-item-container-${productId}`).classList.remove('is-editing-quantity');
     const newQuantity = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
@@ -98,7 +101,7 @@ export function renderOrderSummary(){
 
             const {productId} = deleteButton.dataset ;
             deleteProductFromCart(productId);
-            document.querySelector(`.js-cart-item-container-${productId}`).remove();
+            renderOrderSummary();
             renderPaymentSummary();
             renderCheckoutHeader();
         })
