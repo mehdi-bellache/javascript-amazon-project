@@ -15,8 +15,8 @@ class Product{
     this.priceCents = productDetails.priceCents;
   }
 
-  getRatingScale(){
-    return this.rating.stars * 10 ;
+  getStarsUrl(){
+    return `images/ratings/rating-${this.stars * 10}.png` ;
   }
 
   getPrice(){
