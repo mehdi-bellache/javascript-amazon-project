@@ -74,7 +74,7 @@ export function updateQuantity(productId, newQuantity){
     saveToStorage();
 }
 
-export function loadCart(){
+export function loadCart(fun){
 
   const xhr = new XMLHttpRequest(fun);
   xhr.addEventListener('load',() =>{
