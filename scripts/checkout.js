@@ -28,23 +28,23 @@ Promise.all([
 
 });
 
-new Promise( (resolve) =>{
-    loadProducts(() =>{
-        resolve();
-    })
+// new Promise( (resolve) =>{
+//     loadProducts(() =>{
+//         resolve();
+//     })
 
-}).then(() =>{
-    return new Promise((resolve) =>{
-        loadCart(() =>{
-            resolve();
-        });
-    });
+// }).then(() =>{
+//     return new Promise((resolve) =>{
+//         loadCart(() =>{
+//             resolve();
+//         });
+//     });
 
-}).then(() =>{
-    renderOrderSummary();
-    renderPaymentSummary();
-    renderCheckoutHeader();
-})
+// }).then(() =>{
+//     renderOrderSummary();
+//     renderPaymentSummary();
+//     renderCheckoutHeader();
+// })
 
 // loadProducts( () =>{
 //     loadCart(()=>{
