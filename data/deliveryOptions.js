@@ -28,7 +28,14 @@ export default function isWeekend(date){
 }
 
 export function calculateDeliveryDate(deliveryOption){
-    const today = dayjs();
-    let timeShipping = deliveryOption.deliveryDays;
-    return today.add(deliveryOption.deliveryDays, 'days').format('dddd, D MMMM');
+    let deliveryDate = dayjs();
+    let remainingDays = deliveryOption.deliveryDays;
+    while(remainingDays > 0){
+        deliveryDate = deliveryDate.add(1, 'days');
+        if( ! isWeekend(deliveryDate) ){
+            remainingDays -- ;
+        }
+        
+    }
+    return deliveryDate.format('dddd, D MMMM');
 }
