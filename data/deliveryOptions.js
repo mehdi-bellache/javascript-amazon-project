@@ -22,7 +22,13 @@ export function getDeliveryOption(deliveryOptionId){
     return deliveryOption || deliveryOptions[0] ;
 }
 
+export default function isWeekend(date){
+    const dayOfWeek = date.format('dddd'); 
+    return dayOfWeek === 'Saturday' || dayOfWeek === 'Sunday' ;
+}
+
 export function calculateDeliveryDate(deliveryOption){
     const today = dayjs();
+    let timeShipping = deliveryOption.deliveryDays;
     return today.add(deliveryOption.deliveryDays, 'days').format('dddd, D MMMM');
 }
