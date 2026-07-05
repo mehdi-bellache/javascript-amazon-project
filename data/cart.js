@@ -73,3 +73,4 @@ export function updateQuantity(productId, newQuantity){
 
     saveToStorage();
 }
+
