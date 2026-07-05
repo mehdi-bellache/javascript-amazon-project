@@ -60,7 +60,7 @@ class Clothing extends Product{
 
 export let products = [];
 
-function loadProducts(){
+export function loadProducts(){
 
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load',() =>{
@@ -71,15 +71,13 @@ function loadProducts(){
       return new Product(productDetails);
     });
 
-    console.log(products);
+    console.log(loadProducts);
   })
 
   xhr.open('GET', 'https://supersimplebackend.dev/products' );
   xhr.send();
 
 }
-
-loadProducts();
 
 // export const products = [
 //   {
