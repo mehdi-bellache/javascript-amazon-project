@@ -1,7 +1,7 @@
 import {cart, addToCart, calculateCartQuantity} from '../data/cart.js' ;
 import {products, loadProducts} from '../data/products.js';
 
-loadProducts();
+loadProducts(renderProducts);
 
 function buildQuantitySelect(product){
     let html = `<select class = "js-quantity-selector-${product.id}"> <option selected value="1">1</option>` ; 
