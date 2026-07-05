@@ -32,12 +32,10 @@ function buildProductHTML(cartProduct, product) {
 
     const deliveryOptionId = cartProduct.deliveryOptionId ;
     const deliveryOption = getDeliveryOption(deliveryOptionId);
-    const today = dayjs();
-    const deliveryDate = today.add(deliveryOption.deliveryDays, 'days').format('dddd, D MMMM');
 
     return `
         <div class="cart-item-container js-cart-item-container js-cart-item-container-${id}">
-            <div class="delivery-date">Delivery date: ${deliveryDate}</div>
+            <div class="delivery-date">Delivery date: ${calculateDeliveryDate(deliveryOption)}</div>
             
             <div class="cart-item-details-grid">
                 <img class="product-image" src="${image}">
