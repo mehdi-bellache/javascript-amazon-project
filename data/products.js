@@ -73,6 +73,8 @@ export function loadProductsFetch(){
     });
 
     console.log('loadProducts');
+  }).catch(() =>{
+    console.log('Unexpected error. Please try again later.');
   })
   return promise; 
 }
