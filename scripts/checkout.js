@@ -10,10 +10,13 @@ import { loadCart } from "../data/cart.js";
 async function loadPage(){
 
     try{
+        // throw 'error1';
 
         await loadProductsFetch();
-        await new Promise((resolve) =>{
+        await new Promise((resolve, reject) =>{
+            // throw 'error2';
             loadCart(() =>{
+                // reject('error3');
                 resolve();
             });
         })
