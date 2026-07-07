@@ -16,10 +16,11 @@ export class Car{
     }
 
     go(){
-        if( this.speed < 200){
-            this.speed += 5 ;
+        if( this.isTrunkOpen === false){
+            if( this.speed < 200){
+                this.speed += 5 ;
+            }
         }
-        
     }
 
     brake(){
@@ -33,7 +34,7 @@ export class Car{
             this.isTrunkOpen = true ;
         }
     }
-    
+
     closeTrunk(){
         this.isTrunkOpen = true ;
     }
