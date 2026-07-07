@@ -1,18 +1,19 @@
 export class Car{
     brand;
     model;
-    speed ;
+    speed;
     isTrunkOpen;
 
-    constructor(brand, model, isTrunkOpen){
+    constructor(brand, model){
         this.brand = brand;
         this.model = model;
         this.speed = 0;
-        this.isTrunkOpen = isTrunkOpen ;
+        this.isTrunkOpen = false ;
     }
 
     displayInfo(){
-        console.log(`${this.brand} ${this.model}, Speed: ${this.speed} km/h`);
+        const trunkStatus = this.isTrunkOpen ? 'the trunk is open' : 'the trunk is closed' ;
+        console.log(`${this.brand} ${this.model}, Speed: ${this.speed} km/h, ${trunkStatus}`);
     }
 
     go(){
@@ -46,10 +47,13 @@ const car2 = new Car('Tesla', 'Model 3');
 
 car1.displayInfo();
 car1.go();
+car1.openTrunk();
 car1.go();
 car1.displayInfo();
 car2.displayInfo();
 car2.go();
-car2.go();
+car2.displayInfo();
 car2.brake();
+car2.displayInfo();
+car2.openTrunk();
 car2.displayInfo();
