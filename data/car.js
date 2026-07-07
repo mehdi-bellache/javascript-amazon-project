@@ -9,7 +9,7 @@ export class Car{
     }
 
     displayInfo(){
-        console.log(`${this.brand} ${this.model}`);
+        console.log(`${this.brand} ${this.model}, Speed: ${this.speed} km/h`);
     }
 
     go(){
