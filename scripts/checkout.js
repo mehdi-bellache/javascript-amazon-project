@@ -5,7 +5,7 @@ import { loadProducts, loadProductsFetch } from "../data/products.js";
 import { loadCart } from "../data/cart.js";
 // import '.././data/cart-class.js' ;
 // import '.././data/backend-practice.js'
-import { Car } from '../data/car.js';
+import { Car} from '../data/car.js';
 
 
 async function loadPage(){

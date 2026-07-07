@@ -1,19 +1,33 @@
 export class Car{
     brand;
     model;
+    speed = 0;
 
     constructor(brand, model){
         this.brand = brand;
         this.model = model;
+    }
+
+    displayInfo(){
+        console.log(`${this.brand} ${this.model}`);
+    }
+
+    go(){
+        if( this.speed < 200){
+            this.speed += 5 ;
+        }
+        
+    }
+
+    brake(){
+        if(this.speed > 0){
+            this.speed -= 5 ;
+        }
     }
 }
 
 const car1 = new Car('Toyota', 'Corolla');
 const car2 = new Car('Tesla', 'Model 3');
 
-console.log(car1);
-console.log(car2);
-
-function displayInfo(){
-    console.log(`${this.brand} ${this.model}`);
-}
+car1.displayInfo();
+car2.displayInfo();
