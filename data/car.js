@@ -1,11 +1,14 @@
 export class Car{
     brand;
     model;
-    speed = 0;
+    speed ;
+    isTrunkOpen;
 
-    constructor(brand, model){
+    constructor(brand, model, isTrunkOpen){
         this.brand = brand;
         this.model = model;
+        this.speed = 0;
+        this.isTrunkOpen = isTrunkOpen ;
     }
 
     displayInfo(){
@@ -24,10 +27,28 @@ export class Car{
             this.speed -= 5 ;
         }
     }
+
+    openTrunk(){
+        if(this.speed === 0){
+            this.isTrunkOpen = true ;
+        }
+    }
+    
+    closeTrunk(){
+        this.isTrunkOpen = true ;
+    }
 }
 
 const car1 = new Car('Toyota', 'Corolla');
 const car2 = new Car('Tesla', 'Model 3');
 
+
 car1.displayInfo();
+car1.go();
+car1.go();
+car1.displayInfo();
+car2.displayInfo();
+car2.go();
+car2.go();
+car2.brake();
 car2.displayInfo();
