@@ -13,3 +13,7 @@ const car2 = new Car('Tesla', 'Model 3');
 
 console.log(car1);
 console.log(car2);
+
+function displayInfo(){
+    console.log(`${this.brand} ${this.model}`);
+}
