@@ -1,4 +1,4 @@
-class RaceCar extends Car{
+export class RaceCar extends Car{
     acceleration;
     constructor(acceleration){
         super(brand, model);
@@ -18,3 +18,5 @@ class RaceCar extends Car{
 
 }
 
+const car1 = new RaceCar('McLaren', 'F1', 20);
+car1.displayInfo();

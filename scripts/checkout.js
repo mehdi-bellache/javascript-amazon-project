@@ -6,6 +6,7 @@ import { loadCart } from "../data/cart.js";
 // import '.././data/cart-class.js' ;
 // import '.././data/backend-practice.js'
 import { Car} from '../data/car.js';
+import { RaceCar } from '../data/raceCar.js';
 
 
 async function loadPage(){
