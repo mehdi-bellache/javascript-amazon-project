@@ -13,7 +13,7 @@ export class Car{
 
     displayInfo(){
         const trunkStatus = this.isTrunkOpen ? 'the trunk is open' : 'the trunk is closed' ;
-        console.log(`${this.brand} ${this.model}, Speed: ${this.speed} km/h, ${trunkStatus}`);
+        console.log(`${this.#brand} ${this.#model}, Speed: ${this.speed} km/h, ${trunkStatus}`);
     }
 
     go(){
