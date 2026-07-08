@@ -1,6 +1,6 @@
 export class Car{
-    brand;
-    model;
+    #brand;
+    #model;
     speed;
     isTrunkOpen;
 
