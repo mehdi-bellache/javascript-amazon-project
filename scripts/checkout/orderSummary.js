@@ -40,7 +40,7 @@ function buildProductHTML(cartProduct, product) {
                 <img class="product-image" src="${image}">
                 
                 <div class="cart-item-details">
-                    <div class="product-name">${name}</div>
+                    <div class="product-name js-product-name-${id}">${name}</div>
                     <div class="product-price">$${product.getPrice()}</div>
                     
                     <div class="product-quantity js-product-quantity-${id}">
