@@ -1,6 +1,7 @@
+import { Car } from '../data/car.js' ;
 export class RaceCar extends Car{
     acceleration;
-    constructor(acceleration){
+    constructor(brand, model, acceleration){
         super(brand, model);
         this.acceleration = acceleration ;
     }
