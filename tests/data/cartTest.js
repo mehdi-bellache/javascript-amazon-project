@@ -2,6 +2,7 @@ import { addToCart, cart, loadFromStorage } from "../../data/cart.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
 
 describe('test suite: addToCart', () =>{
+    const productId = '3ebe75dc-64d2-4137-8860-1f5a963e534b' ;
     beforeEach(() =>{
         spyOn(localStorage, 'setItem');
     })
@@ -16,8 +17,6 @@ describe('test suite: addToCart', () =>{
             }]);
         });
         loadFromStorage();
-
-        const productId = '3ebe75dc-64d2-4137-8860-1f5a963e534b' ;
 
         addToCart(productId, 1);
         expect(cart.length).toEqual(1);
@@ -39,8 +38,6 @@ describe('test suite: addToCart', () =>{
 
         loadFromStorage();
 
-
-        const productId = '3ebe75dc-64d2-4137-8860-1f5a963e534b' ;
 
         addToCart(productId, 1);
         expect(cart.length).toEqual(1);

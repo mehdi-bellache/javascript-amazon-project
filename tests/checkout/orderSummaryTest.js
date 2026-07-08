@@ -15,7 +15,7 @@ describe('test suite: renderOrderSummary', () =>{
         spyOn(localStorage, 'setItem');
 
         document.querySelector('.js-test-container').innerHTML =  `
-            <div class="js-checkout-header"></div>
+            <div class="js-checkout-header-middle-section"></div>
             <div class="js-order-summary"></div> 
             <div class="js-payment-summary"></div> ` ;
 
@@ -47,14 +47,14 @@ describe('test suite: renderOrderSummary', () =>{
 
     })
 
-    // it('removes a product', () =>{
+    it('removes a product', () =>{
 
-    //     document.querySelector(`.js-delete-link-${productId1}`).click() ;
-    //     expect(document.querySelectorAll('.js-cart-item-container').length).toEqual(1) ;
-    //     expect(document.querySelectorAll(`.js-cart-item-container-${productId1}`).length).toEqual(null) ;
-    //     expect(document.querySelectorAll(`.js-cart-item-container-${productId2}`).length).not.toEqual(null) ;
-    //     expect(cart.length).toEqual(1);
-    //     expect(cart[0].productId).toEqual(productId2);
+        document.querySelector(`.js-delete-link-${productId1}`).click() ;
+        expect(document.querySelectorAll('.js-cart-item-container').length).toEqual(1) ;
+        expect(document.querySelectorAll(`.js-cart-item-container-${productId1}`).length).toEqual(0) ;
+        expect(document.querySelectorAll(`.js-cart-item-container-${productId2}`).length).not.toEqual(0) ;
+        expect(cart.length).toEqual(1);
+        expect(cart[0].productId).toEqual(productId2);
 
-    // })
+    })
 })  
