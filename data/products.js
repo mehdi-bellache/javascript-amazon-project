@@ -54,7 +54,7 @@ class Appliance extends Product{
 
   extraInfoHTML(){
     return `<a href="${this.instructionsLink}" target="_blank">Instructions</a> 
-          <a href = "${this.warrantyLink}>" target= "_blank">Warranty.</a>` ;
+          <a href="${this.warrantyLink}" target= "_blank">Warranty.</a>` ;
   }
 
 }
@@ -108,6 +108,7 @@ export function loadProducts(fun){
 
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load',() =>{
+    console.log(JSON.parse(xhr.response));
     products = JSON.parse(xhr.response).map((productDetails) => {
       if( productDetails.type === 'clothing'){
         return new Clothing(productDetails);
