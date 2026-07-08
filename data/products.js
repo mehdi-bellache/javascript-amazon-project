@@ -87,6 +87,9 @@ export function loadProductsFetch(){
       if( productDetails.type === 'clothing'){
         return new Clothing(productDetails);
       }
+      else if(productDetails.type === 'appliance'){
+        return new Appliance(productDetails);
+      }
       return new Product(productDetails);
     });
 
@@ -108,6 +111,9 @@ export function loadProducts(fun){
     products = JSON.parse(xhr.response).map((productDetails) => {
       if( productDetails.type === 'clothing'){
         return new Clothing(productDetails);
+      }
+      else if(productDetails.type === 'appliance'){
+        return new Appliance(productDetails);
       }
       return new Product(productDetails);
     });
