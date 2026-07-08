@@ -1,4 +1,4 @@
-import { addToCart, cart, loadFromStorage } from "../../data/cart.js";
+import { addToCart, cart, loadFromStorage, removeProductFromCart } from "../../data/cart.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
 
 describe('test suite: addToCart', () =>{
@@ -55,6 +55,27 @@ describe('test suite: addToCart', () =>{
 })
 
 
-describe('test suite: removeFromCart', () =>{
-    
+describe('test suite: removeProductFromCart', () =>{
+    const productId1 = '3ebe75dc-64d2-4137-8860-1f5a963e534b';
+    beforeEach(() =>{
+        spyOn(localStorage, 'setItem');
+    })
+
+    it('remove a productId that is in the cart', () =>{
+        spyOn(localStorage, 'getItem').and.callFake(() =>{
+            return JSON.stringify([{
+                productId: productId1,
+                quantity: 1,
+                deliveryOptionId: '1'
+            }]);
+        });
+        loadFromStorage();
+        
+        removeProductFromCart(productId1);
+        expect(cart.length).toEqual(0);
+        
+    })
+    it('remove a productId that is not in the cart', () =>{
+
+    })
 })

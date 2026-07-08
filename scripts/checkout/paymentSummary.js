@@ -20,7 +20,7 @@ function calculateCartTotalCents() {
 }
 
 
-function calculateShippingTotalCents() {
+function calculateShippingTotalCents(){
     let totalShippingCents = 0;
     
     cart.forEach(cartItem => { 
