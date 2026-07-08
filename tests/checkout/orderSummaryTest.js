@@ -47,11 +47,13 @@ describe('test suite: renderOrderSummary', () =>{
         expect(document.querySelector(`.js-product-quantity-${productId2}`).innerText).toContain('Quantity: 1');
         expect(document.querySelector(`.js-product-name-${productId1}`).innerText).toContain('Sterling Silver Sky Flower Stud Earrings');
         expect(document.querySelector(`.js-product-name-${productId2}`).innerText).toContain('Intermediate Size Basketball');
-
+        expect(document.querySelector(`.js-product-price-${productId1}`).innerText).toContain('$17.99');
+        expect(document.querySelector(`.js-product-price-${productId2}`).innerText).toContain('$20.95');
+        
     })
-
+    
     it('removes a product', () =>{
-
+        
         document.querySelector(`.js-delete-link-${productId1}`).click() ;
         expect(document.querySelectorAll('.js-cart-item-container').length).toEqual(1) ;
         expect(document.querySelectorAll(`.js-cart-item-container-${productId1}`).length).toEqual(0) ;
@@ -59,6 +61,6 @@ describe('test suite: renderOrderSummary', () =>{
         expect(cart.length).toEqual(1);
         expect(cart[0].productId).toEqual(productId2);
         expect(document.querySelector(`.js-product-name-${productId2}`).innerText).toContain('Intermediate Size Basketball');
-
+        expect(document.querySelector(`.js-product-price-${productId2}`).innerText).toContain('$20.95');
     })
 })  

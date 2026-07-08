@@ -41,7 +41,7 @@ function buildProductHTML(cartProduct, product) {
                 
                 <div class="cart-item-details">
                     <div class="product-name js-product-name-${id}">${name}</div>
-                    <div class="product-price">$${product.getPrice()}</div>
+                    <div class="product-price js-product-price-${id}">$${product.getPrice()}</div>
                     
                     <div class="product-quantity js-product-quantity-${id}">
                         <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
