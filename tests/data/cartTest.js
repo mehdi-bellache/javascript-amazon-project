@@ -59,23 +59,32 @@ describe('test suite: removeProductFromCart', () =>{
     const productId1 = '3ebe75dc-64d2-4137-8860-1f5a963e534b';
     beforeEach(() =>{
         spyOn(localStorage, 'setItem');
+        spyOn(localStorage, 'getItem').and.callFake(() =>{
+            return JSON.stringify([]);
+        });
     })
 
     it('remove a productId that is in the cart', () =>{
-        spyOn(localStorage, 'getItem').and.callFake(() =>{
-            return JSON.stringify([{
-                productId: productId1,
-                quantity: 1,
-                deliveryOptionId: '1'
-            }]);
-        });
         loadFromStorage();
-        
+
+        addToCart(productId1);
         removeProductFromCart(productId1);
         expect(cart.length).toEqual(0);
+        expect(localStorage.setItem).toHaveBeenCalledTimes(2);
+        expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify([]));
         
     })
-    it('remove a productId that is not in the cart', () =>{
+    it('remove a productId that is not in the cart', () =>{ 
+        loadFromStorage();
+        addToCart(productId1, 1);
+        removeProductFromCart('wrong-id');
+        expect(cart.length).toEqual(1);
+        expect(localStorage.setItem).toHaveBeenCalledTimes(2);
+        expect(localStorage.setItem).toHaveBeenCalledWith('cart', JSON.stringify([{
+            productId: productId1,
+            quantity: 1,
+            deliveryOptionId: '1'
+        }]));
 
     })
 })
