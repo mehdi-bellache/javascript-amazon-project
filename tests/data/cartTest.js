@@ -53,3 +53,8 @@ describe('test suite: addToCart', () =>{
     })
 
 })
+
+
+describe('test suite: removeFromCart', () =>{
+    
+})

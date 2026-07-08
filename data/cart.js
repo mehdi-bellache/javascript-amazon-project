@@ -27,7 +27,7 @@ export function addToCart(productId, quantity){
 
 }
 
-export function deleteProductFromCart(productId){
+export function removeProductFromCart(productId){
     const newCart = cart.filter(cartElement =>{ 
         if( cartElement.productId === productId){
             return false ;

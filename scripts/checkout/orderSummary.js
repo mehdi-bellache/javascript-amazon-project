@@ -1,4 +1,4 @@
-import {cart, deleteProductFromCart, updateDeliveryOption, updateQuantity, calculateCartQuantity} from '../../data/cart.js' ;
+import {cart, removeProductFromCart, updateDeliveryOption, updateQuantity, calculateCartQuantity} from '../../data/cart.js' ;
 import {products} from '../../data/products.js';
 import {formatCurrency} from '.././utils/money.js'; 
 import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from '../../data/deliveryOptions.js';
@@ -94,7 +94,7 @@ export function renderOrderSummary(){
         deleteButton.addEventListener('click', () =>{
 
             const {productId} = deleteButton.dataset ;
-            deleteProductFromCart(productId);
+            removeProductFromCart(productId);
             renderOrderSummary();
             renderPaymentSummary();
             renderCheckoutHeader();
