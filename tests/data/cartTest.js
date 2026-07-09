@@ -1,4 +1,4 @@
-import { addToCart, cart, loadFromStorage, removeProductFromCart } from "../../data/cart.js";
+import { addToCart, cart, loadFromStorage, removeProductFromCart, updateDeliveryOption } from "../../data/cart.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
 
 describe('test suite: addToCart', () =>{
@@ -87,7 +87,7 @@ describe('test suite: removeProductFromCart', () =>{
             quantity: 1,
             deliveryOptionId: '1'
         }]));
-
+        
     })
 })
 
@@ -103,11 +103,15 @@ describe('test suite: updateDeliveryOption', () =>{
             }]);
         });
     })
-
+    
     it('update the delivery option', () =>{
         loadFromStorage();
+        updateDeliveryOption(productId1, '3');
+        expect(cart.length).toEqual(1);
+        expect(cart[0].productId).toEqual('3ebe75dc-64d2-4137-8860-1f5a963e534b');
+        expect(cart[0].quantity).toEqual(1);
+        expect(cart[0].deliveryOptionId).toEqual('3');
+        expect(localStorage.setItem).toHaveBeenCalledTimes(1);
     })
-
-
-
+    
 })
