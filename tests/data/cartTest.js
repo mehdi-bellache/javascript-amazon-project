@@ -104,7 +104,7 @@ describe('test suite: updateDeliveryOption', () =>{
         });
     })
     
-    it('update the delivery option', () =>{
+    it('update the delivery option of a product in the cart', () =>{
         loadFromStorage();
         updateDeliveryOption(productId1, '3');
         expect(cart.length).toEqual(1);
@@ -112,6 +112,16 @@ describe('test suite: updateDeliveryOption', () =>{
         expect(cart[0].quantity).toEqual(1);
         expect(cart[0].deliveryOptionId).toEqual('3');
         expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    })
+    
+    it('update the delivery option of a product that is not in the cart', () =>{
+        loadFromStorage();
+        updateDeliveryOption('wrong-id', '3');
+        expect(cart.length).toEqual(1);
+        expect(cart[0].productId).toEqual('3ebe75dc-64d2-4137-8860-1f5a963e534b');
+        expect(cart[0].quantity).toEqual(1);
+        expect(cart[0].deliveryOptionId).toEqual('1');
+        expect(localStorage.setItem).toHaveBeenCalledTimes(0);
     })
     
 })
