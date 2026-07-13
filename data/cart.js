@@ -1,4 +1,4 @@
-import { getDeliveryOption } from "./deliveryOptions";
+import { validDeliveryOption } from "./deliveryOptions";
 
 export let cart ;
 
@@ -55,7 +55,7 @@ export function calculateCartQuantity(){
 export function updateDeliveryOption(productId, deliveryOptionId){
     let matchingItem ;
     
-    if(!getDeliveryOption(deliveryOptionId)){
+    if(!validDeliveryOption(deliveryOptionId)){
         return ;
     }
 
