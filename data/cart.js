@@ -65,7 +65,7 @@ export function updateDeliveryOption(productId, deliveryOptionId){
         }
         
     });
-    if(!matchingItem === undefined){
+    if(!matchingItem){
         return ;
     }
 
