@@ -123,5 +123,15 @@ describe('test suite: updateDeliveryOption', () =>{
         expect(cart[0].deliveryOptionId).toEqual('1');
         expect(localStorage.setItem).toHaveBeenCalledTimes(0);
     })
+
+    it('use a delivery option that does not exist in the cart', () =>{
+        loadFromStorage();
+        updateDeliveryOption(productId1, 'wrong-deliveryOptionId');
+        expect(cart.length).toEqual(1);
+        expect(cart[0].productId).toEqual('3ebe75dc-64d2-4137-8860-1f5a963e534b');
+        expect(cart[0].quantity).toEqual(1);
+        expect(cart[0].deliveryOptionId).toEqual('1');
+        expect(localStorage.setItem).toHaveBeenCalledTimes(0);
+    })
     
 })
