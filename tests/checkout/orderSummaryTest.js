@@ -63,8 +63,12 @@ describe('test suite: renderOrderSummary', () =>{
         expect(document.querySelector(`.js-product-name-${productId2}`).innerText).toContain('Intermediate Size Basketball');
         expect(document.querySelector(`.js-product-price-${productId2}`).innerText).toContain('$20.95');
     })
-
-    it('update a delivery option', () =>{
-        
+    
+    it('update the delivery option', () =>{
+        document.querySelector(`.js-delivery-option-${productId1}-3`).click() ;
+        expect(document.querySelector(`.js-quantity-input-${productId1}-3`).checked).toEqual(true);
+        expect(cart.length).toEqual(2);
+        expect(cart[0].productId).toEqual(productId1);
+        expect(cart[0].deliveryOptionId).toEqual('3');
     })
 })  
