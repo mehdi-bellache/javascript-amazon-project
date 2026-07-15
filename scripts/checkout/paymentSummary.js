@@ -1,4 +1,5 @@
-import {cart, calculateCartQuantity} from '../../data/cart.js' ;
+// import {cart, calculateCartQuantity} from '../../data/cart.js' ;
+import { cart } from '../../data/cart-class.js' ;
 import {products} from '../../data/products.js';
 import {formatCurrency} from '.././utils/money.js'; 
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
@@ -8,7 +9,7 @@ import { addOrder } from '../../data/orders.js';
 function calculateCartTotalCents() {
     let totalCartPriceCents = 0;
     
-    cart.forEach(cartItem => {
+    cart.cartItems.forEach(cartItem => {
         products.forEach(product => {
             if (cartItem.productId === product.id) {
                 totalCartPriceCents += product.priceCents * cartItem.quantity;
@@ -23,7 +24,7 @@ function calculateCartTotalCents() {
 function calculateShippingTotalCents(){
     let totalShippingCents = 0;
     
-    cart.forEach(cartItem => { 
+    cart.cartItems.forEach(cartItem => { 
         const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
         if (deliveryOption) {
             totalShippingCents += deliveryOption.priceCents;
@@ -53,7 +54,7 @@ function buildPaymentSummaryHTML(){
         </div>
 
         <div class="payment-summary-row">
-            <div>Items (${calculateCartQuantity()}):</div>
+            <div>Items (${cart.calculateCartQuantity()}):</div>
             <div class="payment-summary-money">$${formatCurrency(calculateCartTotalCents())}</div>
         </div>
 
@@ -93,7 +94,7 @@ export function renderPaymentSummary(){
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ 
-                    cart: cart
+                    cart: cart.cartItems
                 })
             })
             const order = await response.json();
