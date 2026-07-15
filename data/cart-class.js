@@ -1,5 +1,3 @@
-// je dois utiliser cette class Cart qui est dans le fichier cart-class.js au lieu de cart.js
-
 import { validDeliveryOption } from "./deliveryOptions.js";
 
 export class Cart{

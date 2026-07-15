@@ -1,4 +1,3 @@
-// import {cart, addToCart, calculateCartQuantity} from '../data/cart.js' ;
 import { cart } from '../data/cart-class.js' ;
 import {products, loadProducts} from '../data/products.js';
 
