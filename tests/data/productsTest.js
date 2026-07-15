@@ -147,8 +147,7 @@ describe('test suite: Appliance', () =>{
 
     it('does not display any extra info', () =>{
         expect(product.extraInfoHTML()).toEqual(
-            `<a href="${this.instructionsLink}" target="_blank">Instructions</a> 
-            <a href="${this.warrantyLink}" target= "_blank">Warranty.</a>`);    
+            `<a href="${product.instructionsLink}" target="_blank">Instructions</a><a href="${product.warrantyLink}" target= "_blank">Warranty.</a>`);    
     })
 
 })
