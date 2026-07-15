@@ -1,4 +1,5 @@
-import {cart, removeProductFromCart, updateDeliveryOption, updateQuantity, calculateCartQuantity} from '../../data/cart.js' ;
+// import {cart, removeProductFromCart, updateDeliveryOption, updateQuantity, calculateCartQuantity} from '../../data/cart.js' ;
+import { cart } from '../../data/cart-class.js' ;
 import {products} from '../../data/products.js';
 import {formatCurrency} from '.././utils/money.js'; 
 import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from '../../data/deliveryOptions.js';
@@ -44,7 +45,7 @@ function buildProductHTML(cartProduct, product) {
                     <div class="product-price js-product-price-${id}">$${product.getPrice()}</div>
                     
                     <div class="product-quantity js-product-quantity-${id}">
-                        <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
+                        <span>Quantity: <span class="quantity-label">${cartProduct.cartItems.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
                         <input type = "number" min= "0" max ="999"class="quantity-input js-quantity-input js-quantity-input-${id}" data-product-id="${id}">
                         <span class="save-quantity-link link-primary js-save-link" data-product-id="${id}">Save</span>
@@ -64,7 +65,7 @@ function buildProductHTML(cartProduct, product) {
 function buildAllProductsHTML(cart, products){
     let allProductsHTML = `` ;
 
-    cart.forEach(cartProduct => {
+    cart.cartItems.forEach(cartProduct => {
     products.forEach(product => { if(product.id === cartProduct.productId){
         allProductsHTML += buildProductHTML(cartProduct, product) ;
 

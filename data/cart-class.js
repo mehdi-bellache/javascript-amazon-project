@@ -2,7 +2,7 @@
 
 import { validDeliveryOption } from "./deliveryOptions.js";
 
-class Cart{
+export class Cart{
 
     cartItems;
     #localStorageKey;
@@ -25,7 +25,7 @@ class Cart{
             matchingItem.quantity += quantity ;
         }
         else{
-            this.cartItems.push({     
+            this.cartItems.push({
                 productId,
                 quantity,
                 deliveryOptionId: '1'
@@ -101,7 +101,7 @@ class Cart{
 
 }
 
-const cart = new Cart('cart-oop');
+export const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
 
 
