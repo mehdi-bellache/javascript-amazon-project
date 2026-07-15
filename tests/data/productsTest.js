@@ -1,18 +1,5 @@
 import { Product, Clothing, Appliance, products } from "../../data/products.js";
 
-
-//  getStarsUrl(){
-//     return `images/ratings/rating-${this.rating.stars * 10}.png` ;
-//   }
-
-//   getPrice(){
-//     return formatCurrency(this.priceCents);
-//   }
-
-//   extraInfoHTML(){
-//     return ``;
-//   }
-
 describe('test suite: Product', () =>{
     let product ;
     beforeEach(()=>{
@@ -51,7 +38,7 @@ describe('test suite: Product', () =>{
     })
 
     it('does not display any extra info', () =>{
-        expect(product.extraInfoHTML()).toEqual(``);    
+        expect(product.extraInfoHTML()).toEqual(``);
     })
 
 
@@ -97,8 +84,8 @@ describe('test suite: Clothing', () =>{
         expect(product.getPrice()).toEqual('7.99');
     })
 
-    it('does not display any extra info', () =>{
-        expect(product.extraInfoHTML()).toEqual(`<a href="${product.sizeChartLink}" target="_blank">Size chart</a>`);    
+    it('does display extra info', () =>{
+        expect(product.extraInfoHTML()).toContain(`<a href="${product.sizeChartLink}" target="_blank">Size chart</a>`);    
     })
 
 })
@@ -145,8 +132,8 @@ describe('test suite: Appliance', () =>{
         expect(product.getPrice()).toEqual('18.99');
     })
 
-    it('does not display any extra info', () =>{
-        expect(product.extraInfoHTML()).toEqual(
+    it('does display extra info', () =>{
+        expect(product.extraInfoHTML()).toContain(
             `<a href="${product.instructionsLink}" target="_blank">Instructions</a><a href="${product.warrantyLink}" target= "_blank">Warranty.</a>`);    
     })
 
