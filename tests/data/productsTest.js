@@ -1,4 +1,4 @@
-import { Product, Clothing, Appliance } from "../../data/products.js";
+import { Product, Clothing, Appliance, products } from "../../data/products.js";
 
 
 //  getStarsUrl(){
@@ -14,8 +14,9 @@ import { Product, Clothing, Appliance } from "../../data/products.js";
 //   }
 
 describe('test suite: Product', () =>{
+    let product ;
     beforeEach(()=>{
-        const product = new Product({
+        product = new Product({
             id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
             image: "images/products/athletic-cotton-socks-6-pairs.jpg",
             name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
@@ -57,8 +58,9 @@ describe('test suite: Product', () =>{
 })
 
 describe('test suite: Clothing', () =>{
+    let product;
     beforeEach(()=>{
-        const clothingProduct = new Clothing({
+        product = new Clothing({
             id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
             image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
             name: "Adults Plain Cotton T-Shirt - 2 Pack",
@@ -83,10 +85,12 @@ describe('test suite: Clothing', () =>{
         expect(product.rating.stars).toEqual(4.5);
         expect(product.rating.count).toEqual(56);
         expect(product.priceCents).toEqual(799);
+        expect(product.sizeChartLink).toEqual('images/clothing-size-chart.png');
     })
 
+
     it('gets the stars url', ()=>{
-        expect(product.getStarsUrl()).toEqual(`images/ratings/rating-${clothingProduct.rating.stars * 10}.png`);
+        expect(product.getStarsUrl()).toEqual(`images/ratings/rating-${product.rating.stars * 10}.png`);
     })
 
     it('gets the correct price', () =>{
@@ -94,11 +98,57 @@ describe('test suite: Clothing', () =>{
     })
 
     it('does not display any extra info', () =>{
-        expect(product.extraInfoHTML()).toEqual(``);    
+        expect(product.extraInfoHTML()).toEqual(`<a href="${product.sizeChartLink}" target="_blank">Size chart</a>`);    
     })
 
 })
 
-// describe('Appliance', () =>{
+describe('test suite: Appliance', () =>{
+    let product;
+    beforeEach(()=>{
+        product = new Appliance({
+            id: "54e0eccd-8f36-462b-b68a-8182611d9add",
+            image: "images/products/black-2-slot-toaster.jpg",
+            name: "2 Slot Toaster - Black",
+            rating: {
+                stars: 5,
+                count: 2197
+            },
+            priceCents: 1899,
+            keywords: [
+                "toaster",
+                "kitchen",
+                "appliances"
+            ],
+            type: "appliance",
+            instructionsLink: "images/appliance-instructions.png",
+            warrantyLink: "images/appliance-warranty.png"
+        })
+    })
 
-// })
+    it('has the correct properties', () =>{
+        expect(product.id).toEqual('54e0eccd-8f36-462b-b68a-8182611d9add');
+        expect(product.image).toEqual('images/products/black-2-slot-toaster.jpg');
+        expect(product.rating.stars).toEqual(5);
+        expect(product.rating.count).toEqual(2197);
+        expect(product.priceCents).toEqual(1899);
+        expect(product.instructionsLink).toEqual('images/appliance-instructions.png');
+        expect(product.warrantyLink).toEqual('images/appliance-warranty.png');
+    })
+
+
+    it('gets the stars url', ()=>{
+        expect(product.getStarsUrl()).toEqual(`images/ratings/rating-${product.rating.stars * 10}.png`);
+    })
+
+    it('gets the correct price', () =>{
+        expect(product.getPrice()).toEqual('18.99');
+    })
+
+    it('does not display any extra info', () =>{
+        expect(product.extraInfoHTML()).toEqual(
+            `<a href="${this.instructionsLink}" target="_blank">Instructions</a> 
+            <a href="${this.warrantyLink}" target= "_blank">Warranty.</a>`);    
+    })
+
+})
