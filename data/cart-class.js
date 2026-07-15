@@ -1,5 +1,7 @@
 // je dois utiliser cette class Cart qui est dans le fichier cart-class.js au lieu de cart.js
 
+import { validDeliveryOption } from "./deliveryOptions.js";
+
 class Cart{
 
     cartItems;
@@ -32,7 +34,7 @@ class Cart{
         this.saveToStorage();
     }
 
-    deleteProductFromCart(productId){
+    removeProductFromCart(productId){
         const newCart = this.cartItems.filter(cartElement =>{ 
             if( cartElement.productId === productId){
                 return false ;
@@ -57,12 +59,19 @@ class Cart{
     updateDeliveryOption(productId, deliveryOptionId){
         let matchingItem ;
 
+        if(!validDeliveryOption(deliveryOptionId)){
+            return ;
+        }   
+
         this.cartItems.forEach(cartItem => {
             if(cartItem.productId === productId){
                 matchingItem = cartItem ;
             }
         
         });
+        if(!matchingItem){
+            return ;
+        }
         matchingItem.deliveryOptionId = deliveryOptionId ;
 
         this.saveToStorage();
@@ -76,6 +85,17 @@ class Cart{
         })
 
         this.saveToStorage();
+    }
+
+    loadCart(fun){
+        const xhr = new XMLHttpRequest(fun);
+        xhr.addEventListener('load',() =>{
+            console.log(xhr.response);
+            fun();
+        })
+
+        xhr.open('GET', 'https://supersimplebackend.dev/cart' );
+        xhr.send();
     }
 
 
