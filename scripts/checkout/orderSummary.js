@@ -77,6 +77,7 @@ function buildAllProductsHTML(cart, products){
 
 // Ici je dois aussi nettoyer le code, J'ai pas aime vraiment la fonction saveQuantity. 
 // je peux creer des fonctions pour que renderOrderSummary a moins de ligne de code.
+// je peux ajouter d'autres fichiers de test comme paymentSummaryTest ou deliveryOptionsTest
 
 function saveQuantity(productId){
     document.querySelector(`.js-cart-item-container-${productId}`).classList.remove('is-editing-quantity');
