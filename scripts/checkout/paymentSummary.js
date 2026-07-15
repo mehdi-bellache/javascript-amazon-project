@@ -59,7 +59,7 @@ function buildPaymentSummaryHTML(){
 
         <div class="payment-summary-row">
             <div>Shipping &amp; handling:</div>
-            <div class="payment-summary-money">$${formatCurrency(calculateShippingTotalCents())}</div>
+            <div class="payment-summary-money js-payment-summary-shipping">$${formatCurrency(calculateShippingTotalCents())}</div>
         </div>
 
         <div class="payment-summary-row subtotal-row">
@@ -74,7 +74,7 @@ function buildPaymentSummaryHTML(){
 
         <div class="payment-summary-row total-row">
             <div>Order total:</div>
-            <div class="payment-summary-money">$${formatCurrency(calculateTotalAfterTax())}</div>
+            <div class="payment-summary-money js-payment-summary-total">$${formatCurrency(calculateTotalAfterTax())}</div>
         </div>
 
         <button class="place-order-button button-primary js-place-order-button">
