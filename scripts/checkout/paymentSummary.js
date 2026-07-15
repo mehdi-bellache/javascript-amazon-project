@@ -101,7 +101,8 @@ export function renderPaymentSummary(){
         }
         catch(error){
             console.log('Unexpected error. Please try again later.');
-
         }
+
+        window.location.href = 'orders.html';
     })
 }
