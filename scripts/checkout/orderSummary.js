@@ -45,7 +45,7 @@ function buildProductHTML(cartProduct, product) {
                     <div class="product-price js-product-price-${id}">$${product.getPrice()}</div>
                     
                     <div class="product-quantity js-product-quantity-${id}">
-                        <span>Quantity: <span class="quantity-label">${cartProduct.cartItems.quantity}</span></span>
+                        <span>Quantity: <span class="quantity-label">${cartProduct.quantity}</span></span>
                         <span class="update-quantity-link link-primary js-update-link" data-product-id="${id}">Update</span>
                         <input type = "number" min= "0" max ="999"class="quantity-input js-quantity-input js-quantity-input-${id}" data-product-id="${id}">
                         <span class="save-quantity-link link-primary js-save-link" data-product-id="${id}">Save</span>
