@@ -1,4 +1,5 @@
-import {cart, addToCart, calculateCartQuantity} from '../data/cart.js' ;
+// import {cart, addToCart, calculateCartQuantity} from '../data/cart.js' ;
+import { cart } from '../data/cart-class.js' ;
 import {products, loadProducts} from '../data/products.js';
 
 loadProducts(renderProducts);
@@ -72,8 +73,8 @@ function renderProducts(){
             const { productId } = button.dataset;
 
             const quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
-            addToCart(productId, quantity);
-            document.querySelector('.js-cart-quantity').innerHTML = calculateCartQuantity();
+            cart.addToCart(productId, quantity);
+            document.querySelector('.js-cart-quantity').innerHTML = cart.calculateCartQuantity();
         
             const addedElements = document.querySelectorAll(`.js-added-to-cart-${productId}`);
             addedElements.forEach(element => {

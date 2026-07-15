@@ -83,7 +83,7 @@ function buildAllProductsHTML(cart, products){
 function saveQuantity(productId){
     document.querySelector(`.js-cart-item-container-${productId}`).classList.remove('is-editing-quantity');
     const newQuantity = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
-    updateQuantity(productId, newQuantity);
+    cart.updateQuantity(productId, newQuantity);
     renderOrderSummary();
     renderPaymentSummary();
     renderCheckoutHeader();
@@ -96,7 +96,7 @@ export function renderOrderSummary(){
         deleteButton.addEventListener('click', () =>{
 
             const {productId} = deleteButton.dataset ;
-            removeProductFromCart(productId);
+            cart.removeProductFromCart(productId);
             renderOrderSummary();
             renderPaymentSummary();
             renderCheckoutHeader();
@@ -132,7 +132,7 @@ export function renderOrderSummary(){
 
         element.addEventListener('click', function(){
             const {productId, deliveryOptionId} = element.dataset ;
-            updateDeliveryOption(productId, deliveryOptionId);
+            cart.updateDeliveryOption(productId, deliveryOptionId);
             renderOrderSummary();
             renderPaymentSummary();
             
