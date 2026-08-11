@@ -34,16 +34,6 @@ function fff(order) {
   hh += gg(order.products);
 }
 
-function gg(orderProducts) {
-  const matchingProduct;
-  orderProducts.forEach((orderProduct) => {
-    matchingProduct = products.find(
-      (product) => product.id === orderProduct.id,
-    );
-  });
-  return ``;
-}
-
 function renderOrderItemHTML(orderProduct) {
   const product = products.find((product) => product.id === orderProduct.id);
   const cartItem = cart.cartItems.find(
@@ -81,6 +71,16 @@ function renderOrderItemHTML(orderProduct) {
       </a>
     </div>
   `;
+}
+
+function renderOrderProductsHTML(orderProducts) {
+  let result = ``;
+
+  orderProducts.forEach((orderProduct) => {
+    result += renderOrderItemHTML(orderProduct);
+  });
+
+  return result;
 }
 
 function jjjj() {
