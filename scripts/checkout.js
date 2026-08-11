@@ -13,13 +13,7 @@ async function loadPage() {
     // throw 'error1';
 
     await loadProductsFetch();
-    await new Promise((resolve, reject) => {
-      // throw 'error2';
-      cart.loadCartFetch(() => {
-        // reject('error3');
-        resolve();
-      });
-    });
+    await cart.loadCartFetch();
   } catch (error) {
     console.log("Unexpected error. Please try again later.");
   }

@@ -85,7 +85,7 @@ export class Cart {
   }
 
   loadCart(fun) {
-    const xhr = new XMLHttpRequest(fun);
+    const xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
       console.log(xhr.response);
       fun();
@@ -95,11 +95,10 @@ export class Cart {
     xhr.send();
   }
 
-  async loadCartFetch(fun) {
+  async loadCartFetch() {
     const response = await fetch("https://supersimplebackend.dev/cart");
     const text = await response.text();
     console.log(text);
-    await fun();
   }
 }
 
