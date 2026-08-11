@@ -10,30 +10,6 @@ import {
 
 // js - orders - grid;
 
-// fff(order)
-
-function fff(order) {
-  const hh = `<div class="order-header">
-            <div class="order-header-left-section">
-              <div class="order-date">
-                <div class="order-header-label">Order Placed:</div>
-                <div>${order.orderTime}</div>
-              </div>
-              <div class="order-total">
-                <div class="order-header-label">Total:</div>
-                <div>$${formatCurrency(order.totalCostCents)}</div>
-              </div>
-            </div>
-
-            <div class="order-header-right-section">
-              <div class="order-header-label">Order ID:</div>
-              <div>${order.id}</</div>
-            </div>
-          </div>`;
-
-  hh += gg(order.products);
-}
-
 function renderOrderItemHTML(orderProduct) {
   const product = products.find((product) => product.id === orderProduct.id);
   const cartItem = cart.cartItems.find(
@@ -81,6 +57,32 @@ function renderOrderProductsHTML(orderProducts) {
   });
 
   return result;
+}
+
+function renderOrderHTML(order) {
+  let orderHTML = `
+    <div class="order-header">
+      <div class="order-header-left-section">
+        <div class="order-date">
+          <div class="order-header-label">Order Placed:</div>
+          <div>${order.orderTime}</div>
+        </div>
+        <div class="order-total">
+          <div class="order-header-label">Total:</div>
+          <div>$${formatCurrency(order.totalCostCents)}</div>
+        </div>
+      </div>
+
+      <div class="order-header-right-section">
+        <div class="order-header-label">Order ID:</div>
+        <div>${order.id}</div>
+      </div>
+    </div>
+  `;
+
+  orderHTML += renderOrderProductsHTML(order.products);
+
+  return orderHTML;
 }
 
 function jjjj() {
