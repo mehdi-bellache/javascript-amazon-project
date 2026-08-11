@@ -11,9 +11,7 @@ import { RaceCar } from "../data/raceCar.js";
 async function loadPage() {
   try {
     // throw 'error1';
-
-    await loadProductsFetch();
-    await cart.loadCartFetch();
+    await Promise.all([loadProductsFetch(), cart.loadCartFetch()]);
   } catch (error) {
     console.log("Unexpected error. Please try again later.");
   }
