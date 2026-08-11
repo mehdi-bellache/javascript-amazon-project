@@ -74,7 +74,7 @@ export class Appliance extends Product {
 
 export let products = [];
 
-export async function loadProductsFetch() {
+export function loadProductsFetch() {
   const promise = fetch("https://supersimplebackend.dev/products")
     .then((response) => {
       return response.json();
