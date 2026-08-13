@@ -7,7 +7,7 @@ export function addOrder(order) {
   }
 }
 
-function getOrder(orderId) {
+export function getOrder(orderId) {
   let matchingOrder;
   orders.forEach((order) => {
     if (order.id === orderId) {
@@ -17,7 +17,7 @@ function getOrder(orderId) {
   });
 }
 
-function gerOrderProduct(order, productId) {
+export function gerOrderProduct(order, productId) {
   let matchingOrderProduct;
   order.products.foreach((product) => {
     if (product.productId === productId) {
