@@ -9,21 +9,6 @@ function calculateDeliveryProgress(order, orderProduct) {
   return ((currentTime - orderTime) / (deliveryTime - orderTime)) * 100;
 }
 
-function updateProgressStatus(order, orderProduct) {
-  const progress = calculateDeliveryProgress(order, orderProduct);
-  if (progress >= 0 && progress <= 49) {
-    document
-      .querySelector(".js-preparing-labes")
-      .classList.add("current-status");
-  } else if (progress >= 50 && progress <= 99) {
-    document.querySelector(".js-shipped-labes").classList.add("current-status");
-  } else {
-    document
-      .querySelector(".js-delivered-labes")
-      .classList.add("current-status");
-  }
-}
-
 function renderTrackingHTML() {
   const url = new URL(window.location.href);
   const orderId = url.searchParams.get("orderId");
@@ -32,6 +17,12 @@ function renderTrackingHTML() {
   const order = getOrder(orderId);
   const product = getProduct(productId);
   const orderProduct = getOrderProduct(order, productId);
+
+  const progressPercent = calculateDeliveryProgress(order, orderProduct);
+
+  const isPreparing = progressPercent >= 0 && progressPercent <= 49;
+  const isShipped = progressPercent >= 50 && progressPercent <= 99;
+  const isDelivered = progressPercent >= 100;
 
   const result = `
     <a class="back-to-orders-link link-primary" href="orders.html"> View all orders </a>
@@ -51,22 +42,20 @@ function renderTrackingHTML() {
         <img class="product-image" src=${product.image}>
 
         <div class="progress-labels-container">
-          <div class="progress-label js-preparing-label">
+          <div class="progress-label ${isPreparing ? "current-status" : ""}">
             Preparing
           </div>
-          <div class="progress-label js-shipped-label">
+          <div class="progress-label ${isShipped ? "current-status" : ""}">
             Shipped
           </div>
-          <div class="progress-label js-delivered-label">
+          <div class="progress-label ${isDelivered ? "current-status" : ""}">
             Delivered
           </div>
         </div>
 
         <div class="progress-bar-container">
-          <div class="progress-bar" style="width:${calculateDeliveryProgress(order, orderProduct)}%"></div>
+          <div class="progress-bar" style="width:${progressPercent}%"></div>
         </div> `;
-
-  updateProgressStatus(order, orderProduct);
 
   return result;
 }
