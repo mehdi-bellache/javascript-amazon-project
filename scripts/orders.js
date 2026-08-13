@@ -1,10 +1,12 @@
 import { orders } from "../data/orders.js";
 import { formatCurrency } from "./utils/money.js";
-import { products, loadProductsFetch } from "../data/products.js";
+import { products, loadProductsFetch, getProduct } from "../data/products.js";
 import { cart } from "../data/cart-class.js";
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 
 function renderOrderItemHTML(orderProduct) {
-  const product = products.find((product) => product.id === orderProduct.id);
+  // const product = products.find((product) => product.id === orderProduct.id);
+  const product = getProduct(orderProduct.productId);
   // .format('MMMM DD');
 
   return `
@@ -17,7 +19,7 @@ function renderOrderItemHTML(orderProduct) {
         ${product.name}
       </div>
       <div class="product-delivery-date">
-        Arriving on: ${orderProduct.estimatedDeliveryTime}
+        Arriving on: ${dayjs(orderProduct.estimatedDeliveryTime).format("MMMM D")}
       </div>
       <div class="product-quantity">
         Quantity: ${orderProduct.quantity}
@@ -29,7 +31,7 @@ function renderOrderItemHTML(orderProduct) {
     </div>
 
     <div class="product-actions">
-      <a href="tracking.html?orderId=${orderProduct.id}&productId=${product.id}">
+      <a href="tracking.html?orderId=${orderProduct.productId}&productId=${product.id}">
         <button class="track-package-button button-secondary">
           Track package
         </button>
@@ -55,7 +57,7 @@ function renderOrderHTML(order) {
       <div class="order-header-left-section">
         <div class="order-date">
           <div class="order-header-label">Order Placed:</div>
-          <div>${order.orderTime}</div>
+          <div>${dayjs(order.orderTime).format("MMMM D")}</div>
         </div>
         <div class="order-total">
           <div class="order-header-label">Total:</div>
