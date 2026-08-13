@@ -9,6 +9,21 @@ function calculateDeliveryProgress(order, orderProduct) {
   return ((currentTime - orderTime) / (deliveryTime - orderTime)) * 100;
 }
 
+function updateProgressStatus(order, orderProduct) {
+  const progress = calculateDeliveryProgress(order, orderProduct);
+  if (progress >= 0 && progress <= 49) {
+    document
+      .querySelector(".js-preparing-labes")
+      .classList.add("current-status");
+  } else if (progress >= 50 && progress <= 99) {
+    document.querySelector(".js-shipped-labes").classList.add("current-status");
+  } else {
+    document
+      .querySelector(".js-delivered-labes")
+      .classList.add("current-status");
+  }
+}
+
 function renderTrackingHTML() {
   const url = new URL(window.location.href);
   const orderId = url.searchParams.get("orderId");
@@ -35,21 +50,23 @@ function renderTrackingHTML() {
 
         <img class="product-image" src=${product.image}>
 
-        <div class="progress-labels-container" style="width:${calculateDeliveryProgress(order, orderProduct)}%">
-          <div class="progress-label">
+        <div class="progress-labels-container">
+          <div class="progress-label js-preparing-label">
             Preparing
           </div>
-          <div class="progress-label current-status">
+          <div class="progress-label js-shipped-label">
             Shipped
           </div>
-          <div class="progress-label">
+          <div class="progress-label js-delivered-label">
             Delivered
           </div>
         </div>
 
         <div class="progress-bar-container">
-          <div class="progress-bar"></div>
+          <div class="progress-bar" style="width:${calculateDeliveryProgress(order, orderProduct)}%"></div>
         </div> `;
+
+  updateProgressStatus(order, orderProduct);
 
   return result;
 }
