@@ -1,8 +1,13 @@
 import { orders, getOrder, getOrderProduct } from "../data/orders.js";
-import { formatCurrency } from "./utils/money.js";
 import { products, loadProductsFetch, getProduct } from "../data/products.js";
-import { cart } from "../data/cart-class.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+
+function calculateDeliveryProgress(order, orderProduct) {
+  const currentTime = dayjs();
+  const orderTime = dayjs(order.orderTime);
+  const deliveryTime = dayjs(orderProduct.estimatedDeliveryTime);
+  return ((currentTime - orderTime) / (deliveryTime - orderTime)) * 100;
+}
 
 function renderTrackingHTML() {
   const url = new URL(window.location.href);
@@ -30,7 +35,7 @@ function renderTrackingHTML() {
 
         <img class="product-image" src=${product.image}>
 
-        <div class="progress-labels-container">
+        <div class="progress-labels-container" style="width:${calculateDeliveryProgress(order, orderProduct)}%">
           <div class="progress-label">
             Preparing
           </div>
