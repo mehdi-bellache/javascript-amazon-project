@@ -17,7 +17,7 @@ function renderTrackingHTML() {
     <a class="back-to-orders-link link-primary" href="orders.html"> View all orders </a>
 
         <div class="delivery-date">
-          Arriving on ${dayjs(orderProduct.estimatedDeliveryTime).format("dddd, MMMM D")};
+          Arriving on ${dayjs(orderProduct.estimatedDeliveryTime).format("dddd, MMMM D")}
         </div>
 
         <div class="product-info">
@@ -28,7 +28,7 @@ function renderTrackingHTML() {
           Quantity: ${orderProduct.quantity}
         </div>
 
-        <img class="product-image" src=${product.name}>
+        <img class="product-image" src=${product.image}>
 
         <div class="progress-labels-container">
           <div class="progress-label">
@@ -45,6 +45,8 @@ function renderTrackingHTML() {
         <div class="progress-bar-container">
           <div class="progress-bar"></div>
         </div> `;
+
+  return result;
 }
 
 async function loadPage() {

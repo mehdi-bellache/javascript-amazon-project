@@ -8,15 +8,11 @@ export function addOrder(order) {
 }
 
 export function getOrder(orderId) {
-  return orders.find((order) => {
-    order.id === orderId;
-  });
+  return orders.find((order) => order.id === orderId);
 }
 
 export function getOrderProduct(order, productId) {
-  return order.products.find((product) => {
-    product.productId === productId;
-  });
+  return order.products.find((product) => product.productId === productId);
 }
 
 function saveToStorage() {
