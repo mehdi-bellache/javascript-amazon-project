@@ -1,22 +1,11 @@
 import { orders } from "../data/orders.js";
 import { formatCurrency } from "./utils/money.js";
-import { Product, products } from "../data/products.js";
+import { products } from "../data/products.js";
 import { cart } from "../data/cart-class.js";
-import {
-  deliveryOptions,
-  getDeliveryOption,
-  calculateDeliveryDate,
-} from "../data/deliveryOptions";
-
-// js - orders - grid;
 
 function renderOrderItemHTML(orderProduct) {
   const product = products.find((product) => product.id === orderProduct.id);
-  const cartItem = cart.cartItems.find(
-    (cartItem) => cartItem.id === orderProduct.id,
-  );
-
-  const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
+  // .format('MMMM DD');
 
   return `
     <div class="product-image-container">
@@ -28,10 +17,10 @@ function renderOrderItemHTML(orderProduct) {
         ${product.name}
       </div>
       <div class="product-delivery-date">
-        Arriving on: ${calculateDeliveryDate(deliveryOption)}
+        Arriving on: ${orderProduct.estimatedDeliveryTime}
       </div>
       <div class="product-quantity">
-        Quantity: ${cartItem.quantity}
+        Quantity: ${orderProduct.quantity}
       </div>
       <button class="buy-again-button button-primary">
         <img class="buy-again-icon" src="images/icons/buy-again.png">
@@ -96,3 +85,10 @@ function renderOrdersGridHTML() {
 
   return result;
 }
+
+function okof() {
+  document.querySelector(".orders-grid").innerHTML =
+    `${renderOrdersGridHTML()}`;
+}
+
+okof();
