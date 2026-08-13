@@ -3,11 +3,10 @@ import { formatCurrency } from "./utils/money.js";
 import { products, loadProductsFetch, getProduct } from "../data/products.js";
 import { cart } from "../data/cart-class.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+import { cart } from "../data/cart-class.js";
 
 function renderOrderItemHTML(orderProduct) {
-  // const product = products.find((product) => product.id === orderProduct.id);
   const product = getProduct(orderProduct.productId);
-  // .format('MMMM DD');
 
   return `
     <div class="product-image-container">
@@ -24,7 +23,7 @@ function renderOrderItemHTML(orderProduct) {
       <div class="product-quantity">
         Quantity: ${orderProduct.quantity}
       </div>
-      <button class="buy-again-button button-primary">
+      <button class="buy-again-button js-buy-again-button button-primary" data-product-id="${product.id}">
         <img class="buy-again-icon" src="images/icons/buy-again.png">
         <span class="buy-again-message">Buy it again</span>
       </button>
@@ -90,6 +89,14 @@ async function loadPage() {
   await loadProductsFetch();
   document.querySelector(".js-orders-grid").innerHTML =
     `${renderOrdersGridHTML()}`;
+
+  document
+    .querySelector("js-buy-again-button")
+    .addEventListener("click", function () {
+      cart.addToCart(button.dataset.productId, 1);
+    });
 }
 
 loadPage();
+
+//
