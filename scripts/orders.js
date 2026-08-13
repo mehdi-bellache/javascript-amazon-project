@@ -4,7 +4,7 @@ import { products, loadProductsFetch, getProduct } from "../data/products.js";
 import { cart } from "../data/cart-class.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 
-function renderOrderItemHTML(orderProduct) {
+function renderOrderItemHTML(orderProduct, order) {
   const product = getProduct(orderProduct.productId);
 
   return `
@@ -29,7 +29,7 @@ function renderOrderItemHTML(orderProduct) {
     </div>
 
     <div class="product-actions">
-      <a href="tracking.html?orderId=${orderProduct.productId}&productId=${product.id}">
+      <a href="tracking.html?orderId=${order.id}&productId=${product.id}">
         <button class="track-package-button button-secondary">
           Track package
         </button>
@@ -38,11 +38,11 @@ function renderOrderItemHTML(orderProduct) {
   `;
 }
 
-function renderOrderProductsHTML(orderProducts) {
+function renderOrderProductsHTML(order) {
   let result = `<div class="order-details-grid"> `;
 
-  orderProducts.forEach((orderProduct) => {
-    result += `${renderOrderItemHTML(orderProduct)}`;
+  order.products.forEach((orderProduct) => {
+    result += `${renderOrderItemHTML(orderProduct, order)}`;
   });
   result += `</div>`;
 
@@ -70,7 +70,7 @@ function renderOrderHTML(order) {
     </div>
   `;
 
-  orderHTML += renderOrderProductsHTML(order.products);
+  orderHTML += renderOrderProductsHTML(order);
 
   return orderHTML;
 }
@@ -93,14 +93,10 @@ async function loadPage() {
   document.querySelectorAll(".js-buy-again-button").forEach((button) => {
     button.addEventListener("click", function () {
       cart.addToCart(button.dataset.productId, 1);
-      document.querySelector(".js-cart-quantity").innerHTML =
-        `${cart.calculateCartQuantity()}`;
+      cart.renderCartQuantity();
     });
   });
-
-  // je peux faire en sorte que je fait une fonction dans cart-class qui affiche la nouvelle quantite.
-  document.querySelector(".js-cart-quantity").innerHTML =
-    `${cart.calculateCartQuantity()}`;
+  cart.renderCartQuantity();
 }
 
 loadPage();

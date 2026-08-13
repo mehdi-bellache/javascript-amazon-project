@@ -86,7 +86,7 @@ export class Cart {
 
   renderCartQuantity() {
     document.querySelector(".js-cart-quantity").innerHTML =
-      `${cart.calculateCartQuantity()}`;
+      `${this.calculateCartQuantity()}`;
   }
 
   loadCart(fun) {
