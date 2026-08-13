@@ -53,7 +53,10 @@ function renderOrderProductsHTML(orderProducts) {
   let result = ``;
 
   orderProducts.forEach((orderProduct) => {
-    result += renderOrderItemHTML(orderProduct);
+    result +=
+      `<div class="order-details-grid">` +
+      renderOrderItemHTML(orderProduct) +
+      `</div>`;
   });
 
   return result;
@@ -85,66 +88,11 @@ function renderOrderHTML(order) {
   return orderHTML;
 }
 
-function jjjj() {
-  return orders.forEach((order) => {
-    `<div class="order-container">
-          <div class="order-details-grid">
-            <div class="product-image-container">
-              <img src="images/products/athletic-cotton-socks-6-pairs.jpg">
-            </div>
-
-            <div class="product-details">
-              <div class="product-name">
-                Black and Gray Athletic Cotton Socks - 6 Pairs
-              </div>
-              <div class="product-delivery-date">
-                Arriving on: August 15
-              </div>
-              <div class="product-quantity">
-                Quantity: 1
-              </div>
-              <button class="buy-again-button button-primary">
-                <img class="buy-again-icon" src="images/icons/buy-again.png">
-                <span class="buy-again-message">Buy it again</span>
-              </button>
-            </div>
-
-            <div class="product-actions">
-              <a href="tracking.html?orderId=123&productId=456">
-                <button class="track-package-button button-secondary">
-                  Track package
-                </button>
-              </a>
-            </div>
-
-            <div class="product-image-container">
-              <img src="images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg">
-            </div>
-
-            <div class="product-details">
-              <div class="product-name">
-                Adults Plain Cotton T-Shirt - 2 Pack
-              </div>
-              <div class="product-delivery-date">
-                Arriving on: August 19
-              </div>
-              <div class="product-quantity">
-                Quantity: 2
-              </div>
-              <button class="buy-again-button button-primary">
-                <img class="buy-again-icon" src="images/icons/buy-again.png">
-                <span class="buy-again-message">Buy it again</span>
-              </button>
-            </div>
-
-            <div class="product-actions">
-              <a href="tracking.html">
-                <button class="track-package-button button-secondary">
-                  Track package
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>`;
+function renderOrdersGridHTML() {
+  let result = ``;
+  orders.forEach((order) => {
+    result += `<div class="order-container">${renderOrderHTML(order)}</div>`;
   });
+
+  return result;
 }
