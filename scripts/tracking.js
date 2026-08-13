@@ -1,4 +1,4 @@
-import { orders, getOrder, gerOrderProduct } from "../data/orders.js";
+import { orders, getOrder, getOrderProduct } from "../data/orders.js";
 import { formatCurrency } from "./utils/money.js";
 import { products, loadProductsFetch, getProduct } from "../data/products.js";
 import { cart } from "../data/cart-class.js";
@@ -11,7 +11,7 @@ function renderTrackingHTML() {
 
   const order = getOrder(orderId);
   const product = getProduct(productId);
-  const orderProduct = gerOrderProduct(order, productId);
+  const orderProduct = getOrderProduct(order, productId);
 
   const result = `
     <a class="back-to-orders-link link-primary" href="orders.html"> View all orders </a>

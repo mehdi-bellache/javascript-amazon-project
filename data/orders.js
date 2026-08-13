@@ -8,22 +8,14 @@ export function addOrder(order) {
 }
 
 export function getOrder(orderId) {
-  let matchingOrder;
-  orders.forEach((order) => {
-    if (order.id === orderId) {
-      matchingOrder = order;
-    }
-    return matchingOrder;
+  return orders.find((order) => {
+    order.id === orderId;
   });
 }
 
-export function gerOrderProduct(order, productId) {
-  let matchingOrderProduct;
-  order.products.foreach((product) => {
-    if (product.productId === productId) {
-      matchingOrderProduct = product;
-    }
-    return matchingOrderProduct;
+export function getOrderProduct(order, productId) {
+  return order.products.find((product) => {
+    product.productId === productId;
   });
 }
 
