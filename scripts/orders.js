@@ -1,6 +1,6 @@
 import { orders } from "../data/orders.js";
 import { formatCurrency } from "./utils/money.js";
-import { products } from "../data/products.js";
+import { products, loadProductsFetch } from "../data/products.js";
 import { cart } from "../data/cart-class.js";
 
 function renderOrderItemHTML(orderProduct) {
@@ -39,14 +39,12 @@ function renderOrderItemHTML(orderProduct) {
 }
 
 function renderOrderProductsHTML(orderProducts) {
-  let result = ``;
+  let result = `<div class="order-details-grid"> `;
 
   orderProducts.forEach((orderProduct) => {
-    result +=
-      `<div class="order-details-grid">` +
-      renderOrderItemHTML(orderProduct) +
-      `</div>`;
+    result += `${renderOrderItemHTML(orderProduct)}`;
   });
+  result += `</div>`;
 
   return result;
 }
@@ -86,9 +84,10 @@ function renderOrdersGridHTML() {
   return result;
 }
 
-function okof() {
-  document.querySelector(".orders-grid").innerHTML =
+async function loadPage() {
+  await loadProductsFetch();
+  document.querySelector(".js-orders-grid").innerHTML =
     `${renderOrdersGridHTML()}`;
 }
 
-okof();
+loadPage();
