@@ -84,6 +84,11 @@ export class Cart {
     this.saveToStorage();
   }
 
+  renderCartQuantity() {
+    document.querySelector(".js-cart-quantity").innerHTML =
+      `${cart.calculateCartQuantity()}`;
+  }
+
   loadCart(fun) {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {

@@ -3,7 +3,6 @@ import { formatCurrency } from "./utils/money.js";
 import { products, loadProductsFetch, getProduct } from "../data/products.js";
 import { cart } from "../data/cart-class.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-import { cart } from "../data/cart-class.js";
 
 function renderOrderItemHTML(orderProduct) {
   const product = getProduct(orderProduct.productId);
@@ -87,16 +86,21 @@ function renderOrdersGridHTML() {
 
 async function loadPage() {
   await loadProductsFetch();
+
   document.querySelector(".js-orders-grid").innerHTML =
     `${renderOrdersGridHTML()}`;
 
-  document
-    .querySelector("js-buy-again-button")
-    .addEventListener("click", function () {
+  document.querySelectorAll(".js-buy-again-button").forEach((button) => {
+    button.addEventListener("click", function () {
       cart.addToCart(button.dataset.productId, 1);
+      document.querySelector(".js-cart-quantity").innerHTML =
+        `${cart.calculateCartQuantity()}`;
     });
+  });
+
+  // je peux faire en sorte que je fait une fonction dans cart-class qui affiche la nouvelle quantite.
+  document.querySelector(".js-cart-quantity").innerHTML =
+    `${cart.calculateCartQuantity()}`;
 }
 
 loadPage();
-
-//
