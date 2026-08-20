@@ -64,8 +64,16 @@ function filterProducts() {
   if (!search) {
     return products;
   }
+  const searchLower = search.toLowerCase();
   return products.filter((product) => {
-    return product.name.toLowerCase().includes(search.toLowerCase());
+    const matchingName = product.name.toLowerCase().includes(searchLower);
+
+    const matchingKeyword =
+      product.keywords &&
+      product.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(searchLower),
+      );
+    return matchingName || matchingKeyword;
   });
 }
 
