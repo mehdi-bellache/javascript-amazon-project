@@ -1,5 +1,6 @@
 import { cart } from "../data/cart-class.js";
 import { products, loadProductsFetch } from "../data/products.js";
+import { setupSearch } from "./utils/search.js";
 
 function buildQuantitySelect(product) {
   let html = `<select class = "js-quantity-selector-${product.id}"> <option selected value="1">1</option>`;
@@ -112,20 +113,6 @@ function renderProducts() {
 
       addedMessageTimeouts[productId] = timeoutId;
     });
-  });
-}
-
-function setupSearch() {
-  const searchButton = document.querySelector(".js-search-button");
-  const searchInput = document.querySelector(".js-search-bar");
-
-  searchButton.addEventListener("click", function () {
-    const searchResult = searchInput.value;
-    if (searchResult) {
-      window.location.href = `amazon.html?search=${searchResult}`;
-    } else {
-      window.location.href = `amazon.html`;
-    }
   });
 }
 

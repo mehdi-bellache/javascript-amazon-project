@@ -2,6 +2,7 @@ import { orders } from "../data/orders.js";
 import { formatCurrency } from "./utils/money.js";
 import { products, loadProductsFetch, getProduct } from "../data/products.js";
 import { cart } from "../data/cart-class.js";
+import { setupSearch } from "./utils/search.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 
 function renderOrderItemHTML(orderProduct, order) {
@@ -97,6 +98,7 @@ async function loadPage() {
     });
   });
   cart.renderCartQuantity();
+  setupSearch();
 }
 
 loadPage();

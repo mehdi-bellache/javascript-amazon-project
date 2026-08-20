@@ -1,4 +1,4 @@
-function setupSearch() {
+export function setupSearch() {
   const searchButton = document.querySelector(".js-search-button");
   const searchInput = document.querySelector(".js-search-bar");
 
