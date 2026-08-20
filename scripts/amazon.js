@@ -1,7 +1,5 @@
 import { cart } from "../data/cart-class.js";
-import { products, loadProducts } from "../data/products.js";
-
-loadProducts(renderProducts);
+import { products, loadProductsFetch } from "../data/products.js";
 
 // chaque fois je load amazon.js la quantite de la carte doit obligatoirement etre affiche.
 
@@ -62,6 +60,14 @@ function buildAllProductsHTML(products) {
   return allProductsHTML;
 }
 
+const url = new URL(window.location.href);
+const seach = url.searchParams.get("search");
+if (seach) {
+  const newProducts = products.forEach((product) => {
+    product.name.includes(search);
+  });
+}
+
 function renderProducts() {
   document.querySelector(".products-grid").innerHTML =
     buildAllProductsHTML(products);
@@ -100,4 +106,9 @@ function renderProducts() {
   });
 }
 
-renderProducts();
+async function loadPage() {
+  await loadProductsFetch();
+  renderProducts();
+}
+
+loadPage();
