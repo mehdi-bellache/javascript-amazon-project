@@ -61,14 +61,12 @@ function buildAllProductsHTML(products) {
 function filterProducts() {
   const url = new URL(window.location.href);
   const search = url.searchParams.get("search");
-  let newProducts;
-  if (search) {
-    return (newProducts = products.filter((product) => {
-      return product.name.includes(search);
-    }));
-  } else {
+  if (!search) {
     return products;
   }
+  return products.filter((product) => {
+    return product.name.toLowerCase().includes(search.toLowerCase());
+  });
 }
 
 function renderProducts() {
