@@ -1,8 +1,6 @@
 import { cart } from "../data/cart-class.js";
 import { products, loadProductsFetch } from "../data/products.js";
 
-// chaque fois je load amazon.js la quantite de la carte doit obligatoirement etre affiche.
-
 function buildQuantitySelect(product) {
   let html = `<select class = "js-quantity-selector-${product.id}"> <option selected value="1">1</option>`;
   for (let i = 2; i <= 10; i++) {
@@ -60,17 +58,22 @@ function buildAllProductsHTML(products) {
   return allProductsHTML;
 }
 
-const url = new URL(window.location.href);
-const seach = url.searchParams.get("search");
-if (seach) {
-  const newProducts = products.forEach((product) => {
-    product.name.includes(search);
-  });
+function filterProducts() {
+  const url = new URL(window.location.href);
+  const search = url.searchParams.get("search");
+  let newProducts;
+  if (search) {
+    return (newProducts = products.filter((product) => {
+      return product.name.includes(search);
+    }));
+  } else {
+    return products;
+  }
 }
 
 function renderProducts() {
   document.querySelector(".products-grid").innerHTML =
-    buildAllProductsHTML(products);
+    buildAllProductsHTML(filterProducts());
 
   const addedMessageTimeouts = {};
 
@@ -109,6 +112,7 @@ function renderProducts() {
 async function loadPage() {
   await loadProductsFetch();
   renderProducts();
+  cart.renderCartQuantity();
 }
 
 loadPage();
