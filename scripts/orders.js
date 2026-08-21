@@ -23,6 +23,7 @@ function renderOrderItemHTML(orderProduct, order) {
       <div class="product-quantity">
         Quantity: ${orderProduct.quantity}
       </div>
+
       <button class="buy-again-button js-buy-again-button button-primary" data-product-id="${product.id}">
         <img class="buy-again-icon" src="images/icons/buy-again.png">
         <span class="buy-again-message">Buy it again</span>
@@ -95,6 +96,13 @@ async function loadPage() {
     button.addEventListener("click", function () {
       cart.addToCart(button.dataset.productId, 1);
       cart.renderCartQuantity();
+      button.innerHTML = "Added";
+      setTimeout(() => {
+        button.innerHTML = `
+          <img class="buy-again-icon" src="images/icons/buy-again.png">
+          <span class="buy-again-message">Buy it again</span>
+        `;
+      }, 1000);
     });
   });
   cart.renderCartQuantity();
